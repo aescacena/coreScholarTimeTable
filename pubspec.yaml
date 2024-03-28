@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   faker: ^2.1.0
+  uuid: ^4.3.2
 
 dev_dependencies:
   test: ^1.25.2

@@ -1,7 +1,7 @@
 import '../domain/Teacher.dart';
 import '../domain/TeacherRepository.dart';
 
-class InMemoryTeacherRepository extends TeacherRepository{
+class InMemoryCourseRepository extends TeacherRepository{
   Map<int, Teacher> _teachers = new Map();
 
   @override

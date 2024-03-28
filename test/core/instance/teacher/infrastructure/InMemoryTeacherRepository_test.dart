@@ -7,10 +7,10 @@ import '../../../../../core/instance/teacher/infrastructure/InMemoryTeacherRepos
 import '../domain/TeacherMother.dart';
 
 void main(){
-  late InMemoryTeacherRepository repository;
+  late InMemoryCourseRepository repository;
 
   setUp((){
-    repository = new InMemoryTeacherRepository();
+    repository = new InMemoryCourseRepository();
   });
 
   group("Repository Teachers", () {
