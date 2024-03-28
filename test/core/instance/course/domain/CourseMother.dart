@@ -1,9 +1,11 @@
 import 'package:faker/faker.dart';
 import '../../../../../core/instance/course/domain/Course.dart';
+import '../../../../../core/instance/course/domain/CourseSubject.dart';
 import '../../../../shared/infrastructure/UuidGeneratorMother.dart';
+import 'CourseSubjectMother.dart';
 
 class CourseMother{
-  static Course create(String id, String name, List<String> subjects){
+  static Course create(String id, String name, List<CourseSubject> subjects){
     return Course.create(id, name, subjects);
   }
 
@@ -11,8 +13,7 @@ class CourseMother{
     return create(
         UuidGeneratorMother.random(),
         faker.company.name(),
-        List.generate(
-            faker.randomGenerator.integer(10), (index) => faker.job.title()));
+        CourseSubjectMother.randomListWithTotal(7));
   }
 
   static List<Course> randomList(){
