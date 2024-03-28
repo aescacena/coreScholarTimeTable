@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
-import '../../../../core/instance/teacher/domain/Teacher.dart';
-import '../../../../core/instance/teacher/infrastructure/InMemoryTeacherRepository.dart';
+import '../../../../../core/instance/teacher/domain/Teacher.dart';
+import '../../../../../core/instance/teacher/infrastructure/InMemoryTeacherRepository.dart';
 import '../domain/TeacherMother.dart';
 
 void main(){

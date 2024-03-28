@@ -1,6 +1,6 @@
 import 'package:faker/faker.dart';
 
-import '../../../../core/instance/teacher/domain/Teacher.dart';
+import '../../../../../core/instance/teacher/domain/Teacher.dart';
 
 class TeacherMother{
   static Teacher create(int id, String name, String subName, int department){
