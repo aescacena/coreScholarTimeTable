@@ -1,6 +1,10 @@
 class CalendarDay{
   final String    date;
-  final List<int> subjects;
+  List<int> subjects;
 
-  CalendarDay(this.date, this.subjects);
+  CalendarDay._(this.date, this.subjects);
+
+  static CalendarDay emptyDay(String date){
+    return CalendarDay._(date, []);
+  }
 }
