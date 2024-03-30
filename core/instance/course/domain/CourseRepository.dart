@@ -1,8 +1,8 @@
 import 'Course.dart';
 
 abstract class CourseRepository{
-  Course? findById(String id);
-  List<Course> searchAll();
-  void save(Course course);
+  ClassRoom? findById(String id);
+  List<ClassRoom> searchAll();
+  void save(ClassRoom course);
   void delete(String id);
 }

@@ -2,7 +2,7 @@ import '../domain/Course.dart';
 import '../domain/CourseRepository.dart';
 
 class InMemoryCourseRepository extends CourseRepository{
-  Map<String, Course> _courses = new Map();
+  Map<String, ClassRoom> _courses = new Map();
 
   @override
   void delete(String id) {
@@ -10,17 +10,17 @@ class InMemoryCourseRepository extends CourseRepository{
   }
 
   @override
-  void save(Course course) {
+  void save(ClassRoom course) {
     _courses.putIfAbsent(course.id, () => course);
   }
 
   @override
-  List<Course> searchAll() {
-    return List<Course>.from(_courses.values);
+  List<ClassRoom> searchAll() {
+    return List<ClassRoom>.from(_courses.values);
   }
 
   @override
-  Course? findById(String id) {
+  ClassRoom? findById(String id) {
     return _courses.containsKey(id) ? _courses[id] : null;
   }
 }

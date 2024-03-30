@@ -15,7 +15,7 @@ void main(){
   group("Repository Courses", () {
     test("Should save Course", () {
       // Arrange
-      Course course = CourseMother.random();
+      ClassRoom course = CourseMother.random();
 
       // Act
       repository.save(course);
@@ -24,18 +24,18 @@ void main(){
     });
     test("Should return all Courses", () {
       // Arrange
-      List<Course> courses = CourseMother.randomList();
+      List<ClassRoom> courses = CourseMother.randomList();
 
       // Act
       courses.forEach((element) => repository.save(element));
-      List<Course> cousesFound = repository.searchAll();
+      List<ClassRoom> cousesFound = repository.searchAll();
 
       // Assert
       expect(courses, containsAll(cousesFound));
     });
     test("Should return exist Course", () {
       // Arrange
-      Course course = CourseMother.random();
+      ClassRoom course = CourseMother.random();
 
       // Act
       repository.save(course);
@@ -45,7 +45,7 @@ void main(){
     });
     test("Should return null", () {
       // Arrange
-      Course course = CourseMother.random();
+      ClassRoom course = CourseMother.random();
 
       // Act
 
@@ -54,7 +54,7 @@ void main(){
     });
     test("Should remove null", () {
       // Arrange
-      Course course = CourseMother.random();
+      ClassRoom course = CourseMother.random();
 
       // Act
       repository.save(course);

@@ -1,9 +1,9 @@
 import 'CourseSubject.dart';
 
-class Course{
+class ClassRoom{
   final String              id;
   final String              name;
   final List<CourseSubject> subjects;
 
-  Course.create(this.id, this.name, this.subjects);
+  ClassRoom.create(this.id, this.name, this.subjects);
 }

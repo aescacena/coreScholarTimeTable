@@ -1,0 +1,4 @@
+enum ClassRoomType{
+  GENERAL,
+  SPECIFIC
+}
