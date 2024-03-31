@@ -1,15 +1,15 @@
 import 'package:faker/faker.dart';
 
-import '../../../../../core/instance/sessions/domain/SessionSubject.dart';
+import '../../../../../core/instance/teachingSession/domain/TeachingSessionSubject.dart';
 import '../../../../shared/infrastructure/UuidGeneratorMother.dart';
 
-class SessionSubjectMother{
-  static SessionSubject create(
+class TeachingSessionSubjectMother{
+  static TeachingSessionSubject create(
       String classRoomId, List<String> alternativeClassRooms, List<int> distribution){
-    return SessionSubject.create(classRoomId, alternativeClassRooms, distribution);
+    return TeachingSessionSubject.create(classRoomId, alternativeClassRooms, distribution);
   }
 
-  static SessionSubject random(){
+  static TeachingSessionSubject random(){
     List<String>    alternativeClassRooms      = [];
     List<List<int>> distributionPossible       = [[1, 1, 1], [2, 2], [3, 2], [2, 1]];
     int             totalAlternativeClassRooms = faker.randomGenerator.integer(2);
@@ -23,8 +23,8 @@ class SessionSubjectMother{
         distributionPossible[faker.randomGenerator.integer(distributionPossible.length)]);
   }
 
-  static List<SessionSubject> randomList(){
-    List<SessionSubject> sessionSubjects = [];
+  static List<TeachingSessionSubject> randomList(){
+    List<TeachingSessionSubject> sessionSubjects = [];
     int          total   = faker.randomGenerator.integer(10);
     int          i       = 0;
     while(i < total){

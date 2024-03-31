@@ -1,28 +1,28 @@
 import 'package:faker/faker.dart';
 
-import '../../../../../core/instance/sessions/domain/Session.dart';
-import '../../../../../core/instance/sessions/domain/SessionSubject.dart';
+import '../../../../../core/instance/teachingSession/domain/TeachingSession.dart';
+import '../../../../../core/instance/teachingSession/domain/TeachingSessionSubject.dart';
 import '../../../../shared/infrastructure/UuidGeneratorMother.dart';
-import 'SessionSubjectMother.dart';
+import 'TeachingSessionSubjectMother.dart';
 
-class SessionMother{
-  static Session create(
+class TeachingSessionMother{
+  static TeachingSession create(
       String id, String subjectId, String teacherId, String groupStudentsId,
-      SessionSubject subject){
-    return Session.create(id, subjectId, teacherId, groupStudentsId, subject);
+      TeachingSessionSubject subject){
+    return TeachingSession.create(id, subjectId, teacherId, groupStudentsId, subject);
   }
 
-  static Session random(){
+  static TeachingSession random(){
     return create(
         UuidGeneratorMother.random(),
         UuidGeneratorMother.random(),
         UuidGeneratorMother.random(),
         UuidGeneratorMother.random(),
-        SessionSubjectMother.random());
+        TeachingSessionSubjectMother.random());
   }
 
-  static List<Session> randomList(){
-    List<Session> sessions = [];
+  static List<TeachingSession> randomList(){
+    List<TeachingSession> sessions = [];
     int          total   = faker.randomGenerator.integer(10);
     int          i       = 0;
     while(i < total){
