@@ -28,4 +28,9 @@ class Time{
 
   @override
   int get hashCode => hour.hashCode ^ minutes.hashCode;
+
+  @override
+  String toString() {
+    return 'Time{hour: $hour, minutes: $minutes}';
+  }
 }

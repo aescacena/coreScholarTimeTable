@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '../../../shared/domain/Time.dart';
 import '../../../shared/domain/TimeDuration.dart';
 import 'TimeFrameSession.dart';
@@ -37,18 +39,41 @@ class TimeFrame{
   }
 
   void addBreakTime(int afterNumberTeachingSession, TimeDuration duration) {
+    var teachingSessions = _searchAllType(TimeFrameSectionType.TEACHING_SESSION);
+    if(teachingSessions.isEmpty || teachingSessions.length < afterNumberTeachingSession){
+      return;
+    }
+    var teachingReference = teachingSessions[afterNumberTeachingSession - 1];
+    var indexReference = _sections.indexWhere((element) => element == teachingReference);
     List<TimeFrameSection> sessions = [];
     for(int actual = 0; actual < _sections.length; actual++){
-      if(actual < afterNumberTeachingSession){
+      if(actual < indexReference){
         sessions.add(_sections[actual]);
-      }else{
-        if(actual == afterNumberTeachingSession){
-          sessions.add(TimeFrameSection.createBreakTime(_sections[actual - 1].end, duration));
-        }
+      }
+      if(actual == indexReference){
+        sessions.add(_sections[actual]);
+        sessions.add(TimeFrameSection.createBreakTime(teachingReference.end, duration));
+      }
+      if(actual > indexReference){
         sessions.add(_sections[actual].changeStart(duration));
       }
     }
     this._sections = sessions;
+  }
+
+  void addStopsTime(TimeDuration duration) {
+    var actualDuration = duration;
+    List<TimeFrameSection> sections = [];
+    for(int i = 0; i < _sections.length; i++){
+      if(_sections[i].isTeachingSession()){
+        sections.add(TimeFrameSection.createStopTime(sections[i].end, duration));
+        actualDuration = actualDuration.sum(duration);
+      }
+      var endSession = startSession.addTime(duration.hour, duration.minutes);
+      sections.add(TimeFrameSection.createTeachingSession(startSession, duration));
+      startSession = endSession;
+    }
+    this._sections = sections;
   }
 
   List<Time> startTeachingSessions() {
@@ -64,14 +89,15 @@ class TimeFrame{
   }
 
   List<Time> _startsSectionType(TimeFrameSectionType type){
-    return this._sections
-        .where((element) => element.type == type)
-        .map((e) => e.start)
-        .toList();
+    return _searchAllType(type).map((e) => e.start).toList();
   }
 
   int _countType(TimeFrameSectionType type){
-    return this._sections.where((element) => element.type == type).length;
+    return _searchAllType(type).length;
+  }
+
+  List<TimeFrameSection> _searchAllType(TimeFrameSectionType type){
+    return this._sections.where((element) => element.type == type).toList();
   }
 
   @override

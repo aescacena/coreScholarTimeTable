@@ -25,6 +25,10 @@ class TimeFrameSection{
     return TimeFrameSection._(this.start.addTimeDuration(duration), this.end.addTimeDuration(duration), this.type);
   }
 
+  bool isTeachingSession(){
+    return this.type == TimeFrameSectionType.TEACHING_SESSION;
+  }
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
