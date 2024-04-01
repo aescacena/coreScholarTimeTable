@@ -1,18 +1,35 @@
 import '../../../shared/domain/Time.dart';
 import '../../../shared/domain/TimeDuration.dart';
+import 'TimeFrameType.dart';
 
-class TimeFrameSession{
-  final int  numberSession;
-  final Time start;
-  final Time end;
+class TimeFrameSection{
+  final Time                 start;
+  final Time                 end;
+  final TimeFrameSectionType type;
 
-  TimeFrameSession._(this.numberSession, this.start, this.end);
+  TimeFrameSection._(this.start, this.end, this.type);
 
-  static TimeFrameSession create(int numberSession, Time start, Time end){
-    return TimeFrameSession._(numberSession, start, end);
+  static TimeFrameSection createTeachingSession(Time start, TimeDuration duration){
+    return TimeFrameSection._(start, start.addTimeDuration(duration), TimeFrameSectionType.TEACHING_SESSION);
   }
 
-  static TimeFrameSession withDuration(int numberSession, Time start, TimeDuration duration){
-    return TimeFrameSession._(numberSession, start, start.addTimeDuration(duration));
+  static TimeFrameSection createBreakTime(Time start, TimeDuration duration){
+    return TimeFrameSection._(start, start.addTimeDuration(duration), TimeFrameSectionType.BREAK_TIME);
   }
+
+  static TimeFrameSection createStopTime(Time start, TimeDuration duration){
+    return TimeFrameSection._(start, start.addTimeDuration(duration), TimeFrameSectionType.STOP_TIME);
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TimeFrameSection &&
+          runtimeType == other.runtimeType &&
+          start == other.start &&
+          end == other.end &&
+          type == other.type;
+
+  @override
+  int get hashCode => start.hashCode ^ end.hashCode ^ type.hashCode;
 }

@@ -1,0 +1,3 @@
+enum TimeFrameSectionType{
+  TEACHING_SESSION, STOP_TIME, BREAK_TIME
+}

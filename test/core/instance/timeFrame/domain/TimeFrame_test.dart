@@ -19,7 +19,7 @@ void main(){
         // Assert
         expect(timeFrame.start, equals(time));
         expect(timeFrame.totalBreaksTimes(), isZero);
-        expect(timeFrame.totalSessions(), isZero);
+        expect(timeFrame.totalTeachingSessions(), isZero);
         expect(timeFrame.totalStopsTimes(), isZero);
       });
     });
@@ -28,28 +28,45 @@ void main(){
         // Arrange
         TimeFrame    timeFrame      = TimeFrame.createEmpty(TimeMother.random());
         int          numberSessions = 6;
-        Time         startSessions  = TimeMother.create(1, 0);
         TimeDuration duration       = TimeDuration.create(2, 0);
 
         // Act
-        timeFrame.addSessions(numberSessions, startSessions, duration);
+        timeFrame.addTeachingSessions(numberSessions, duration);
 
         // Assert
-        expect(timeFrame.totalSessions(), equals(numberSessions));
+        expect(timeFrame.totalTeachingSessions(), equals(numberSessions));
       });
       test("Should create number sessions with correct time", () {
         // Arrange
-        TimeFrame    timeFrame      = TimeFrame.createEmpty(TimeMother.random());
-        int          numberSessions = 6;
-        Time         startSessions  = TimeMother.create(1, 0);
-        TimeDuration duration       = TimeDuration.create(2, 0);
+        TimeFrame    timeFrame           = TimeFrame.createEmpty(TimeMother.create(8, 0));
+        int          numberSessions      = 3;
+        TimeDuration duration            = TimeDuration.create(2, 0);
+        List<Time>   sessionsStartExpect = [Time(8,0), Time(10,0), Time(12,0)];
 
         // Act
-        timeFrame.addSessions(numberSessions, startSessions, duration);
+        timeFrame.addTeachingSessions(numberSessions, duration);
+        var sessionsStartResult = timeFrame.startTeachingSessions();
 
         // Assert
-        expect(true, equals(false));
+        expect(sessionsStartExpect, equals(sessionsStartResult));
       });
+      /*test("Should add break time", () {
+        // Arrange
+        TimeFrame    timeFrame           = TimeFrame.createEmpty(TimeMother.create(8, 0));
+        int          numberSessions      = 6;
+        TimeDuration duration            = TimeDuration.create(2, 0);
+        List<Time>   sessionsStartExpect = [Time(8,0), Time(10,0), Time(12,0), Time(14,0), Time(16,0), Time(18,0)];
+        int          afterNumberSession  = 3;
+        Time         durationBreakTime   = Time(1, 0);
+
+        // Act
+        timeFrame.addTeachingSessions(numberSessions, duration);
+        timeFrame.addBreakTime(afterNumberSession, durationBreakTime);
+        var sessionsStartResult = timeFrame.startTeachingSessions();
+
+        // Assert
+        expect(sessionsStartExpect, equals(sessionsStartResult));
+      });*/
     });
   });
 }

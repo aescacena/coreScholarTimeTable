@@ -17,4 +17,15 @@ class Time{
     var timeResult = actualTime.add(Duration(hours: duration.hour, minutes: duration.minutes));
     return Time(timeResult.hour, timeResult.minute);
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Time &&
+          runtimeType == other.runtimeType &&
+          hour == other.hour &&
+          minutes == other.minutes;
+
+  @override
+  int get hashCode => hour.hashCode ^ minutes.hashCode;
 }
