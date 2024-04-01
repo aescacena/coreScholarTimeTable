@@ -50,23 +50,24 @@ void main(){
         // Assert
         expect(sessionsStartExpect, equals(sessionsStartResult));
       });
-      /*test("Should add break time", () {
+      test("Should modify ranges Teaching sessions and add Break time", () {
         // Arrange
-        TimeFrame    timeFrame           = TimeFrame.createEmpty(TimeMother.create(8, 0));
-        int          numberSessions      = 6;
-        TimeDuration duration            = TimeDuration.create(2, 0);
-        List<Time>   sessionsStartExpect = [Time(8,0), Time(10,0), Time(12,0), Time(14,0), Time(16,0), Time(18,0)];
-        int          afterNumberSession  = 3;
-        Time         durationBreakTime   = Time(1, 0);
+        TimeFrame timeFrame               = TimeFrame.createEmpty(TimeMother.create(8, 0));
+        var       numberSessions          = 6;
+        var       duration                = TimeDuration.create(2, 0);
+        var       expectTeachingSessions  = [Time(8,0), Time(10,0), Time(12,0), Time(15,0), Time(17,0), Time(19,0)];
+        var       expectBreakTime         = [Time(14,0)];
+        var       afterNumberSession      = 3;
+        var       durationBreakTime       = TimeDuration.create(1, 0);
 
         // Act
         timeFrame.addTeachingSessions(numberSessions, duration);
         timeFrame.addBreakTime(afterNumberSession, durationBreakTime);
-        var sessionsStartResult = timeFrame.startTeachingSessions();
 
         // Assert
-        expect(sessionsStartExpect, equals(sessionsStartResult));
-      });*/
+        expect(expectTeachingSessions, equals(timeFrame.startTeachingSessions()));
+        expect(expectBreakTime, equals(timeFrame.startBreaksTime()));
+      });
     });
   });
 }

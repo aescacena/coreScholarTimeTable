@@ -36,16 +36,20 @@ class TimeFrame{
     this._sections = sessions;
   }
 
-  /*void addBreakTime(int afterNumberSession, Time durationBreakTime) {
+  void addBreakTime(int afterNumberTeachingSession, TimeDuration duration) {
     List<TimeFrameSection> sessions = [];
-    var startSession = start;
-    for(int i = 0; i < sessions.length; i++){
-      var endSession = startSession.addTime(duration.hour, duration.minutes);
-      sessions.add(TimeFrameSection.create(i, startSession, endSession));
-      startSession = endSession;
+    for(int actual = 0; actual < _sections.length; actual++){
+      if(actual < afterNumberTeachingSession){
+        sessions.add(_sections[actual]);
+      }else{
+        if(actual == afterNumberTeachingSession){
+          sessions.add(TimeFrameSection.createBreakTime(_sections[actual - 1].end, duration));
+        }
+        sessions.add(_sections[actual].changeStart(duration));
+      }
     }
     this._sections = sessions;
-  }*/
+  }
 
   List<Time> startTeachingSessions() {
     return this._startsSectionType(TimeFrameSectionType.TEACHING_SESSION);

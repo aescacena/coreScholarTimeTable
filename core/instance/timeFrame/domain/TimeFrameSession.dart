@@ -21,6 +21,10 @@ class TimeFrameSection{
     return TimeFrameSection._(start, start.addTimeDuration(duration), TimeFrameSectionType.STOP_TIME);
   }
 
+  TimeFrameSection changeStart(TimeDuration duration){
+    return TimeFrameSection._(this.start.addTimeDuration(duration), this.end.addTimeDuration(duration), this.type);
+  }
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
