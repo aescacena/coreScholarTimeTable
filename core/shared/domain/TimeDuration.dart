@@ -8,6 +8,10 @@ class TimeDuration{
     return TimeDuration._(hour, minutes);
   }
 
+  static TimeDuration zero() {
+    return TimeDuration._(0, 0);
+  }
+
   TimeDuration sum(TimeDuration duration) {
     int actualHour    = this.hour + duration.hour;
     int actualMinutes = this.minutes + duration.minutes;

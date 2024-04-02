@@ -62,16 +62,20 @@ class TimeFrame{
   }
 
   void addStopsTime(TimeDuration duration) {
-    var actualDuration = duration;
+    var actualDuration = TimeDuration.zero();
     List<TimeFrameSection> sections = [];
     for(int i = 0; i < _sections.length; i++){
       if(_sections[i].isTeachingSession()){
-        sections.add(TimeFrameSection.createStopTime(sections[i].end, duration));
-        actualDuration = actualDuration.sum(duration);
+        if(i == 0){
+          sections.add(_sections[i]);
+        }else{
+          sections.add(_sections[i].changeStart(actualDuration));
+        }
+        if((i + 1) < _sections.length){
+          sections.add(TimeFrameSection.createStopTime(sections.last.end, duration));
+          actualDuration = actualDuration.sum(duration);
+        }
       }
-      var endSession = startSession.addTime(duration.hour, duration.minutes);
-      sections.add(TimeFrameSection.createTeachingSession(startSession, duration));
-      startSession = endSession;
     }
     this._sections = sections;
   }
