@@ -18,6 +18,11 @@ class Time{
     return Time(timeResult.hour, timeResult.minute);
   }
 
+  int diff(Time time){
+    var actualTime = DateTime(2024, 1, 1, this.hour, this.minutes);
+    return actualTime.difference(DateTime(2024, 1, 1, time.hour, time.minutes)).inMinutes;
+  }
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||

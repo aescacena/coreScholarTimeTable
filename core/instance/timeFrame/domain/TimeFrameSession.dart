@@ -25,8 +25,24 @@ class TimeFrameSection{
     return TimeFrameSection._(this.start.addTimeDuration(duration), this.end.addTimeDuration(duration), this.type);
   }
 
+  TimeFrameSection addNewStart(Time start){
+    return TimeFrameSection._(start, start.addTimeDuration(TimeDuration.create(0, this.duration())), this.type);
+  }
+
   bool isTeachingSession(){
     return this.type == TimeFrameSectionType.TEACHING_SESSION;
+  }
+
+  bool isBreakTime(){
+    return this.type == TimeFrameSectionType.BREAK_TIME;
+  }
+
+  bool isStopTime(){
+    return this.type == TimeFrameSectionType.STOP_TIME;
+  }
+
+  int duration(){
+    return this.start.diff(this.end).abs();
   }
 
   @override

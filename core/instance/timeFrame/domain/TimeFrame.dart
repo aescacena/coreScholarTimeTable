@@ -44,37 +44,42 @@ class TimeFrame{
       return;
     }
     var teachingReference = teachingSessions[afterNumberTeachingSession - 1];
-    var indexReference = _sections.indexWhere((element) => element == teachingReference);
     List<TimeFrameSection> sessions = [];
     for(int actual = 0; actual < _sections.length; actual++){
-      if(actual < indexReference){
+      if(actual == 0){
         sessions.add(_sections[actual]);
-      }
-      if(actual == indexReference){
-        sessions.add(_sections[actual]);
-        sessions.add(TimeFrameSection.createBreakTime(teachingReference.end, duration));
-      }
-      if(actual > indexReference){
-        sessions.add(_sections[actual].changeStart(duration));
+      }else{
+        if(_sections[actual] == teachingReference){
+          sessions.add(_sections[actual].addNewStart(sessions.last.end));
+          sessions.add(TimeFrameSection.createBreakTime(sessions.last.end, duration));
+        }else{
+          if(sessions.last.isBreakTime() && _sections[actual].isStopTime()){
+            continue;
+          }
+          sessions.add(_sections[actual].addNewStart(sessions.last.end));
+        }
       }
     }
     this._sections = sessions;
   }
 
   void addStopsTime(TimeDuration duration) {
-    var actualDuration = TimeDuration.zero();
     List<TimeFrameSection> sections = [];
     for(int i = 0; i < _sections.length; i++){
       if(_sections[i].isTeachingSession()){
         if(i == 0){
           sections.add(_sections[i]);
         }else{
-          sections.add(_sections[i].changeStart(actualDuration));
+          if(_sections[i - 1].isTeachingSession()){
+            sections.add(TimeFrameSection.createStopTime(sections.last.end, duration));
+          }
+          var teachingSession = _sections[i];
+          teachingSession = teachingSession.addNewStart(sections.last.end);
+          sections.add(teachingSession);
         }
-        if((i + 1) < _sections.length){
-          sections.add(TimeFrameSection.createStopTime(sections.last.end, duration));
-          actualDuration = actualDuration.sum(duration);
-        }
+      }
+      if(_sections[i].isBreakTime()){
+        sections.add(_sections[i].addNewStart(sections.last.end));
       }
     }
     this._sections = sections;
