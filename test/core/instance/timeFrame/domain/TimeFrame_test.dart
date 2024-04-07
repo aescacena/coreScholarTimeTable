@@ -5,6 +5,7 @@ import '../../../../../core/instance/timeFrame/domain/TimeFrame.dart';
 import '../../../../../core/shared/domain/Time.dart';
 import '../../../../../core/shared/domain/TimeDuration.dart';
 import '../../../../shared/domain/TimeMother.dart';
+import '../../../../shared/infrastructure/UuidGeneratorMother.dart';
 
 void main(){
   group("Domain TimeFrame", () {
@@ -14,7 +15,7 @@ void main(){
         var time = TimeMother.random();
 
         // Act
-        TimeFrame timeFrame = TimeFrame.createEmpty(time);
+        TimeFrame timeFrame = TimeFrame.createEmpty(UuidGeneratorMother.random(), time);
 
         // Assert
         expect(timeFrame.start, equals(time));
@@ -26,7 +27,7 @@ void main(){
     group("Sections", () {
       test("Should create number Teaching sessions", () {
         // Arrange
-        TimeFrame    timeFrame      = TimeFrame.createEmpty(TimeMother.random());
+        TimeFrame    timeFrame      = TimeFrame.createEmpty(UuidGeneratorMother.random(), TimeMother.random());
         int          numberSessions = 6;
         TimeDuration duration       = TimeDuration.create(2, 0);
 
@@ -38,7 +39,7 @@ void main(){
       });
       test("Should create number Teaching sessions with correct time", () {
         // Arrange
-        TimeFrame    timeFrame           = TimeFrame.createEmpty(TimeMother.create(8, 0));
+        TimeFrame    timeFrame           = TimeFrame.createEmpty(UuidGeneratorMother.random(), TimeMother.create(8, 0));
         int          numberSessions      = 3;
         TimeDuration duration            = TimeDuration.create(2, 0);
         List<Time>   sessionsStartExpect = [Time(8,0), Time(10,0), Time(12,0)];
@@ -52,7 +53,7 @@ void main(){
       });
       test("Should modify ranges Teaching sessions and add Break time", () {
         // Arrange
-        TimeFrame timeFrame               = TimeFrame.createEmpty(TimeMother.create(8, 0));
+        TimeFrame timeFrame               = TimeFrame.createEmpty(UuidGeneratorMother.random(), TimeMother.create(8, 0));
         var       numberSessions          = 6;
         var       duration                = TimeDuration.create(2, 0);
         var       expectTeachingSessions  = [Time(8,0), Time(10,0), Time(12,0), Time(15,0), Time(17,0), Time(19,0)];
@@ -71,7 +72,7 @@ void main(){
     });
     test("Should modify ranges Teaching sessions and add couple Break time", () {
       // Arrange
-      TimeFrame timeFrame               = TimeFrame.createEmpty(TimeMother.create(8, 0));
+      TimeFrame timeFrame               = TimeFrame.createEmpty(UuidGeneratorMother.random(), TimeMother.create(8, 0));
       var       numberSessions          = 6;
       var       duration                = TimeDuration.create(2, 0);
       var       expectTeachingSessions  = [Time(8,0), Time(10,0), Time(13,0), Time(15,0), Time(18,0), Time(20,0)];
@@ -90,7 +91,7 @@ void main(){
     });
     test("Should modify ranges Teaching sessions and add couple Stops time", () {
       // Arrange
-      TimeFrame timeFrame               = TimeFrame.createEmpty(TimeMother.create(8, 0));
+      TimeFrame timeFrame               = TimeFrame.createEmpty(UuidGeneratorMother.random(), TimeMother.create(8, 0));
       var       numberSessions          = 6;
       var       duration                = TimeDuration.create(2, 0);
       var       expectTeachingSessions  = [Time(8, 0), Time(10, 10), Time(12, 20), Time(14, 30), Time(16, 40), Time(18, 50)];
@@ -107,7 +108,7 @@ void main(){
     });
     test("Should modify ranges Teaching sessions when add couple Break time and after add Stops time", () {
       // Arrange
-      TimeFrame timeFrame               = TimeFrame.createEmpty(TimeMother.create(8, 0));
+      TimeFrame timeFrame               = TimeFrame.createEmpty(UuidGeneratorMother.random(), TimeMother.create(8, 0));
       var       numberSessions          = 6;
       var       duration                = TimeDuration.create(2, 0);
       var       expectTeachingSessions  = [Time(8, 0), Time(10, 10), Time(13, 10), Time(15, 20), Time(18, 20), Time(20, 30)];
@@ -130,7 +131,7 @@ void main(){
     });
     test("Should modify ranges Teaching sessions when add Stops time and after add couple Break time", () {
       // Arrange
-      TimeFrame timeFrame               = TimeFrame.createEmpty(TimeMother.create(8, 0));
+      TimeFrame timeFrame               = TimeFrame.createEmpty(UuidGeneratorMother.random(), TimeMother.create(8, 0));
       var       numberSessions          = 6;
       var       duration                = TimeDuration.create(2, 0);
       var       expectTeachingSessions  = [Time(8, 0), Time(10, 10), Time(13, 10), Time(15, 20), Time(18, 20), Time(20, 30)];

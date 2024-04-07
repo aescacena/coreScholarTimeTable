@@ -6,13 +6,14 @@ import 'TimeFrameSession.dart';
 import 'TimeFrameType.dart';
 
 class TimeFrame{
+  final String           id;
   final Time             start;
   List<TimeFrameSection> _sections;
 
-  TimeFrame._(this.start, this._sections);
+  TimeFrame._(this.id, this.start, this._sections);
 
-  static createEmpty(Time start){
-    return TimeFrame._(start, []);
+  static createEmpty(id, Time start){
+    return TimeFrame._(id, start, []);
   }
 
   int totalTeachingSessions(){

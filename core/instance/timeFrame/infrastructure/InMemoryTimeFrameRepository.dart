@@ -1,27 +1,27 @@
-import '../domain/TeachingSession.dart';
-import '../domain/TeachingSessionRepository.dart';
+import '../domain/TimeFrame.dart';
+import '../domain/TimeFrameRepository.dart';
 
-class InMemoryTeachingSessionRepository implements TeachingSessionRepository{
-  Map<String, TeachingSession> _sessions = new Map();
+class InMemoryTimeFrameRepository implements TimeFrameRepository{
+  Map<String, TimeFrame> _frames = new Map();
   
   @override
   void delete(String id) {
-    _sessions.remove(id);
+    _frames.remove(id);
   }
 
   @override
-  TeachingSession? findById(String id) {
-    return _sessions.containsKey(id) ? _sessions[id] : null;
+  TimeFrame? findById(String id) {
+    return _frames.containsKey(id) ? _frames[id] : null;
   }
 
   @override
-  void save(TeachingSession session) {
-    _sessions.putIfAbsent(session.id, () => session);
+  void save(TimeFrame timeFrame) {
+    _frames.putIfAbsent(timeFrame.id, () => timeFrame);
   }
 
   @override
-  List<TeachingSession> searchAll() {
-    return List<TeachingSession>.from(_sessions.values);
+  List<TimeFrame> searchAll() {
+    return List<TimeFrame>.from(_frames.values);
   }
   
 }

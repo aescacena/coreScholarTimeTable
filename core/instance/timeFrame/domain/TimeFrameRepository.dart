@@ -1,8 +1,8 @@
-import 'TeachingSession.dart';
+import 'TimeFrame.dart';
 
-abstract class TeachingSessionRepository{
-  TeachingSession? findById(String id);
-  List<TeachingSession> searchAll();
-  void save(TeachingSession session);
+abstract class TimeFrameRepository{
+  TimeFrame? findById(String id);
+  List<TimeFrame> searchAll();
+  void save(TimeFrame timeFrame);
   void delete(String id);
 }

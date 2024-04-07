@@ -1,7 +1,7 @@
 import '../../subjects/domain/Subject.dart';
 import '../../teacher/domain/Teacher.dart';
-import 'CalendarWeekly.dart';
+import 'Calendar.dart';
 
 abstract class CalendarGenerator{
-  CalendarWeekly? generate(CalendarWeekly calendarWeekly, List<Subject> subjects, List<Teacher> teachers);
+  Calendar? generate(Calendar calendarWeekly, List<Subject> subjects, List<Teacher> teachers);
 }
