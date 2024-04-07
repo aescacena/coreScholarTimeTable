@@ -16,4 +16,46 @@ void main(){
       expect(calendar.dates(), dates);
     });
   });
+  group("Subjects", () {
+    test("Should add subject on first day", () {
+      // Arrange
+
+      // Act
+
+      // Assert
+      expect(true, isFalse);
+    });
+    test("Should add subject day selected", () {
+      // Arrange
+
+      // Act
+
+      // Assert
+      expect(true, isFalse);
+    });
+    test("Should remove subject on day", () {
+      // Arrange
+
+      // Act
+
+      // Assert
+      expect(true, isFalse);
+    });
+    test("Should change subject of day", () {
+      // Arrange
+
+      // Act
+
+      // Assert
+      expect(true, isFalse);
+    });
+    test("Should swap subjects", () {
+      // Arrange
+
+      // Act
+
+      // Assert
+      expect(true, isFalse);
+    });
+  });
 }
