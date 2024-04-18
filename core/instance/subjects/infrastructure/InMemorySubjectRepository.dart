@@ -11,7 +11,7 @@ class InMemorySubjectRepository extends SubjectRepository{
 
   @override
   void save(Subject subject) {
-    _departments.putIfAbsent(subject.id, () => subject);
+    _departments.putIfAbsent(subject.id.value, () => subject);
   }
 
   @override

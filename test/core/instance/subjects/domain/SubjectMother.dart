@@ -1,16 +1,18 @@
 import 'package:faker/faker.dart';
 
 import '../../../../../core/instance/subjects/domain/Subject.dart';
+import '../../../../../core/instance/subjects/domain/SubjectId.dart';
 import '../../../../shared/infrastructure/UuidGeneratorMother.dart';
+import 'SubjectIdMother.dart';
 
 class SubjectMother{
-  static Subject create(String id, String name, int duration){
+  static Subject create(SubjectId id, String name, int duration){
     return Subject.create(id, name, duration);
   }
 
   static Subject random(){
     return create(
-        UuidGeneratorMother.random(),
+        SubjectIdMother.random(),
         faker.person.firstName(),
         faker.randomGenerator.integer(99999));
   }

@@ -1,6 +1,6 @@
 class Dates{
   static String today(){
-    return Dates._dateTimeToString(DateTime.now());
+    return Dates.dateTimeToString(DateTime.now());
   }
 
   static String addDay(String date){
@@ -15,7 +15,7 @@ class Dates{
     return dates;
   }
 
-  static String _dateTimeToString(DateTime date){
+  static String dateTimeToString(DateTime date){
     String year  = date.year.toString();
     String month = date.month.toString().padLeft(2, '0');  // Asegura que el mes tenga dos dígitos
     String day   = date.day.toString().padLeft(2, '0');  // Asegura que el día tenga dos dígitos
@@ -35,7 +35,7 @@ class Dates{
   }
 
   static String addDaysFromDateTime(DateTime date, int numberDays){
-    return Dates._dateTimeToString(date.add(Duration(days: numberDays)));
+    return Dates.dateTimeToString(date.add(Duration(days: numberDays)));
   }
 
   static String addDaysFromString(String date, int numberDays){
