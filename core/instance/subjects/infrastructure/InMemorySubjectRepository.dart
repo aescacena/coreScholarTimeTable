@@ -1,12 +1,15 @@
+import 'dart:ffi';
+
 import '../domain/Subject.dart';
+import '../domain/SubjectId.dart';
 import '../domain/SubjectRepository.dart';
 
 class InMemorySubjectRepository extends SubjectRepository{
   Map<String, Subject> _departments = new Map();
 
   @override
-  void delete(String id) {
-    _departments.remove(id);
+  void delete(SubjectId id) {
+    _departments.remove(id.value);
   }
 
   @override
@@ -20,7 +23,7 @@ class InMemorySubjectRepository extends SubjectRepository{
   }
 
   @override
-  Subject? findById(String id) {
-    return _departments.containsKey(id) ? _departments[id] : null;
+  Subject? findById(SubjectId id) {
+    return _departments.containsKey(id.value) ? _departments[id.value] : null;
   }
 }
