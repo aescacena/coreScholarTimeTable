@@ -1,15 +1,16 @@
 import 'package:faker/faker.dart';
 
 import '../../../../../core/instance/teacher/domain/Teacher.dart';
+import '../../../../shared/infrastructure/UuidGeneratorMother.dart';
 
 class TeacherMother{
-  static Teacher create(int id, String name, String subName, int department){
+  static Teacher create(String id, String name, String subName, int department){
     return Teacher.create(id, name, subName, department);
   }
 
   static Teacher random(){
     return create(
-        faker.randomGenerator.integer(99999), faker.person.firstName(),
+        UuidGeneratorMother.random(), faker.person.firstName(),
         faker.person.lastName(), faker.randomGenerator.integer(99999));
   }
 

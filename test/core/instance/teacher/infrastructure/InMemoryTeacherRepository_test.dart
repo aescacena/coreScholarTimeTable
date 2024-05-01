@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:io';
 
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
@@ -7,12 +7,42 @@ import '../../../../../core/instance/teacher/infrastructure/InMemoryTeacherRepos
 import '../domain/TeacherMother.dart';
 
 void main(){
-  late InMemoryCourseRepository repository;
+  late InMemoryTeacherRepository repository;
 
   setUp((){
-    repository = new InMemoryCourseRepository();
+    repository = InMemoryTeacherRepository.empty();
   });
 
+  group("Constructor", (){
+    test("Should create empty", (){
+      // Arrange
+
+      // Act
+
+      // Assert
+      expect(repository.searchAll().length, 0);
+    });
+    test("Should create with Data", (){
+      // Arrange
+      var teachers = TeacherMother.randomList();
+
+      // Act
+      repository = InMemoryTeacherRepository.create(teachers);
+
+      // Assert
+      expect(repository.searchAll(), teachers);
+    });
+    test("Should create from File", (){
+      // Arrange
+      var file = File(Directory.current.path+'/core/resource/data/Teachers.json');
+
+      // Act
+      repository = InMemoryTeacherRepository.fromFile(file);
+
+      // Assert
+      expect(repository.searchAll().isNotEmpty, isTrue);
+    });
+  });
   group("Repository Teachers", () {
     test("Should save Teacher", () {
       // Arrange

@@ -1,8 +1,8 @@
 import 'Teacher.dart';
 
 abstract class TeacherRepository{
-  Teacher? findById(int id);
+  Teacher? findById(String id);
   List<Teacher> searchAll();
   void save(Teacher teacher);
-  void delete(int id);
+  void delete(String id);
 }
