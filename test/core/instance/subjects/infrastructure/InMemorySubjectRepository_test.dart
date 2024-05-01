@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
@@ -9,9 +11,40 @@ void main(){
   late InMemorySubjectRepository repository;
 
   setUp((){
-    repository = new InMemorySubjectRepository();
+    repository = InMemorySubjectRepository.empty();
   });
 
+  group("Constructor", () {
+    test("Should create Empty", () {
+      // Arrange
+
+      // Act
+      repository = InMemorySubjectRepository.empty();
+
+      // Assert
+      expect(repository.searchAll().isEmpty, isTrue);
+    });
+    test("Should create from List", () {
+      // Arrange
+      var subjects = SubjectMother.randomList();
+
+      // Act
+      repository = InMemorySubjectRepository.create(subjects);
+
+      // Assert
+      expect(repository.searchAll(), subjects);
+    });
+    test("Should create from File", () {
+      // Arrange
+      var file = File(Directory.current.path+'/core/resource/data/Subjects.json');
+
+      // Act
+      repository = InMemorySubjectRepository.fromFile(file);
+
+      // Assert
+      expect(repository.searchAll().isNotEmpty, isTrue);
+    });
+  });
   group("Repository Subjects", () {
     test("Should save Subject", () {
       // Arrange
