@@ -9,35 +9,35 @@
           "name": "1er Curso",
           "subjects": [
             {
-              "name": "Configuración de infraestructuras de sistemas de telecomunicaciones",
+              "subjectId": "1",
               "duration": 4
             },
             {
-              "name": "Elementos de sistemas de telecomunicaciones.",
+              "subjectId": "2",
               "duration": 3
             },
             {
-              "name": "Sistemas informáticos y redes locales",
+              "subjectId": "3",
               "duration": 6
             },
             {
-              "name": "Técnicas y procesos en infraestructuras de telecomunicaciones",
+              "subjectId": "4",
               "duration": 3
             },
             {
-              "name": "Gestión de proyectos de instalaciones de telecomunicaciones",
+              "subjectId": "5",
               "duration": 3
             },
             {
-              "name": "Sistemas de telefonía fija y móvil.",
+              "subjectId": "6",
               "duration": 5
             },
             {
-              "name": "Formación y orientación laboral.",
+              "subjectId": "7",
               "duration": 3
             },
             {
-              "name": "Inglés Técnico I-S",
+              "subjectId": "8",
               "duration": 3
             }
           ]
@@ -47,27 +47,27 @@
           "name": "2do Curso",
           "subjects": [
             {
-              "name": "Sistemas de producción audiovisual. (DT)",
+              "subjectId": "9",
               "duration": 7
             },
             {
-              "name": " Redes telemáticas.",
+              "subjectId": "10",
               "duration": 6
             },
             {
-              "name": "Sistemas de radiocomunicaciones",
+              "subjectId": "11",
               "duration": 6
             },
             {
-              "name": "Sistemas integrados y hogar digital.",
+              "subjectId": "12",
               "duration": 6
             },
             {
-              "name": "Empresa e iniciativa emprendedora.",
+              "subjectId": "13",
               "duration": 6
             },
             {
-              "name": "Inglés Técnico II-S",
+              "subjectId": "14",
               "duration": 2
             }
           ]
@@ -83,27 +83,27 @@
           "name": "1er Curso",
           "subjects": [
             {
-              "name": " Sistemas eléctricos y de seguridad y confortabilidad",
+              "subjectId": "15",
               "duration": 6
             },
             {
-              "name": "Sistemas de transmisión de fuerzas y trenes de rodaje",
+              "subjectId": "16",
               "duration": 6
             },
             {
-              "name": "Motores térmicos y sus sistemas auxiliares",
+              "subjectId": "17",
               "duration": 6
             },
             {
-              "name": "Elementos amovibles y fijos no estructurales.",
+              "subjectId": "18",
               "duration": 6
             },
             {
-              "name": "Formación y orientación laboral",
+              "subjectId": "7",
               "duration": 3
             },
             {
-              "name": "Inglés Técnico I-S",
+              "subjectId": "8",
               "duration": 3
             }
           ]
@@ -113,27 +113,27 @@
           "name": "2do Curso",
           "subjects": [
             {
-              "name": "Tratamiento y recubrimiento de superficies",
+              "subjectId": "19",
               "duration": 10
             },
             {
-              "name": "Estructuras del vehículo",
+              "subjectId": "20",
               "duration": 6
             },
             {
-              "name": "Gestión y logística del mantenimiento de vehículos",
+              "subjectId": "21",
               "duration": 6
             },
             {
-              "name": "Técnicas de comunicación y de relaciones.",
+              "subjectId": "22",
               "duration": 3
             },
             {
-              "name": "Empresa e iniciativa emprendedora",
+              "subjectId": "13",
               "duration": 3
             },
             {
-              "name": "Inglés Técnico II-S",
+              "subjectId": "14",
               "duration": 2
             }
           ]
