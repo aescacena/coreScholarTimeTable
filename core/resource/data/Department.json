@@ -1,0 +1,36 @@
+{
+  "departments": [
+    {
+      "id": "1",
+      "name": "Agraria"
+    },
+    {
+      "id": "2",
+      "name": "Electricidad y elctrónica"
+    },
+    {
+      "id": "3",
+      "name": "Imagen personal"
+    },
+    {
+      "id": "4",
+      "name": "Sanidad"
+    },
+    {
+      "id": "5",
+      "name": "Transporte y mantenimiento de vehículos"
+    },
+    {
+      "id": "6",
+      "name": "Formación y orientación laboral"
+    },
+    {
+      "id": "7",
+      "name": "Información y orientación"
+    },
+    {
+      "id": "8",
+      "name": "Inglés"
+    }
+  ]
+}
