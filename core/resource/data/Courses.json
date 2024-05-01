@@ -1,0 +1,144 @@
+{
+  "course": [
+    {
+      "id": "1",
+      "name": "SISTEMAS DE TELECOMUNICACIONES E INFORMÁTICOS",
+      "courses": [
+        {
+          "id": "1_1",
+          "name": "1er Curso",
+          "subjects": [
+            {
+              "name": "Configuración de infraestructuras de sistemas de telecomunicaciones",
+              "duration": 4
+            },
+            {
+              "name": "Elementos de sistemas de telecomunicaciones.",
+              "duration": 3
+            },
+            {
+              "name": "Sistemas informáticos y redes locales",
+              "duration": 6
+            },
+            {
+              "name": "Técnicas y procesos en infraestructuras de telecomunicaciones",
+              "duration": 3
+            },
+            {
+              "name": "Gestión de proyectos de instalaciones de telecomunicaciones",
+              "duration": 3
+            },
+            {
+              "name": "Sistemas de telefonía fija y móvil.",
+              "duration": 5
+            },
+            {
+              "name": "Formación y orientación laboral.",
+              "duration": 3
+            },
+            {
+              "name": "Inglés Técnico I-S",
+              "duration": 3
+            }
+          ]
+        },
+        {
+          "id": "1_2",
+          "name": "2do Curso",
+          "subjects": [
+            {
+              "name": "Sistemas de producción audiovisual. (DT)",
+              "duration": 7
+            },
+            {
+              "name": " Redes telemáticas.",
+              "duration": 6
+            },
+            {
+              "name": "Sistemas de radiocomunicaciones",
+              "duration": 6
+            },
+            {
+              "name": "Sistemas integrados y hogar digital.",
+              "duration": 6
+            },
+            {
+              "name": "Empresa e iniciativa emprendedora.",
+              "duration": 6
+            },
+            {
+              "name": "Inglés Técnico II-S",
+              "duration": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "AUTOMOCIÓN",
+      "courses": [
+        {
+          "id": "2_1",
+          "name": "1er Curso",
+          "subjects": [
+            {
+              "name": " Sistemas eléctricos y de seguridad y confortabilidad",
+              "duration": 6
+            },
+            {
+              "name": "Sistemas de transmisión de fuerzas y trenes de rodaje",
+              "duration": 6
+            },
+            {
+              "name": "Motores térmicos y sus sistemas auxiliares",
+              "duration": 6
+            },
+            {
+              "name": "Elementos amovibles y fijos no estructurales.",
+              "duration": 6
+            },
+            {
+              "name": "Formación y orientación laboral",
+              "duration": 3
+            },
+            {
+              "name": "Inglés Técnico I-S",
+              "duration": 3
+            }
+          ]
+        },
+        {
+          "id": "2_2",
+          "name": "2do Curso",
+          "subjects": [
+            {
+              "name": "Tratamiento y recubrimiento de superficies",
+              "duration": 10
+            },
+            {
+              "name": "Estructuras del vehículo",
+              "duration": 6
+            },
+            {
+              "name": "Gestión y logística del mantenimiento de vehículos",
+              "duration": 6
+            },
+            {
+              "name": "Técnicas de comunicación y de relaciones.",
+              "duration": 3
+            },
+            {
+              "name": "Empresa e iniciativa emprendedora",
+              "duration": 3
+            },
+            {
+              "name": "Inglés Técnico II-S",
+              "duration": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
