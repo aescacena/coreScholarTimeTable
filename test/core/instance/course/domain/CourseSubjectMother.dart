@@ -5,17 +5,19 @@ import '../../../../shared/infrastructure/UuidGeneratorMother.dart';
 
 class CourseSubjectMother{
   static CourseSubject create(
-      String subjectId, String teacherId, int totalHours, int weeklyHours, int classHours){
-    return CourseSubject.create(subjectId, teacherId, totalHours, weeklyHours, classHours);
+      String subjectId, int weeklyHours, String teacherId, int totalHours, int classHours){
+    return CourseSubject.create(subjectId, weeklyHours, teacherId: teacherId, totalHours: totalHours, classHours: classHours);
   }
 
   static CourseSubject random(){
     int classHours  = faker.randomGenerator.integer(4, min: 1);
     int weeklyHours = classHours < 4 ? 2 : 1;
-    return CourseSubject.create(
+    return CourseSubjectMother.create(
         UuidGeneratorMother.random(),
+        weeklyHours,
         UuidGeneratorMother.random(),
-        faker.randomGenerator.integer(2500, min: 1500), weeklyHours, classHours);
+        faker.randomGenerator.integer(2500, min: 1500),
+        classHours);
   }
 
   static List<CourseSubject> randomListWithTotal(int total){

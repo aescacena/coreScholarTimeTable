@@ -5,19 +5,19 @@ import '../../../../shared/infrastructure/UuidGeneratorMother.dart';
 import 'CourseSubjectMother.dart';
 
 class CourseMother{
-  static ClassRoom create(String id, String name, List<CourseSubject> subjects){
-    return ClassRoom.create(id, name, subjects);
+  static Course create(String id, String name, List<CourseSubject> subjects){
+    return Course.create(id, name, subjects);
   }
 
-  static ClassRoom random(){
+  static Course random(){
     return create(
         UuidGeneratorMother.random(),
         faker.company.name(),
         CourseSubjectMother.randomListWithTotal(7));
   }
 
-  static List<ClassRoom> randomList(){
-    List<ClassRoom> courses = [];
+  static List<Course> randomList(){
+    List<Course> courses = [];
     int          total   = faker.randomGenerator.integer(10);
     int          i       = 0;
     while(i < total){
