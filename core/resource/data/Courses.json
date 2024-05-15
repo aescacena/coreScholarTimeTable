@@ -76,6 +76,80 @@
     },
     {
       "id": "2",
+      "name": "SISTEMAS DE TELECOMUNICACIONES E INFORMÁTICOS",
+      "courses": [
+        {
+          "id": "1_1",
+          "name": "1er Curso",
+          "subjects": [
+            {
+              "subjectId": "1",
+              "duration": 4
+            },
+            {
+              "subjectId": "2",
+              "duration": 3
+            },
+            {
+              "subjectId": "3",
+              "duration": 6
+            },
+            {
+              "subjectId": "4",
+              "duration": 3
+            },
+            {
+              "subjectId": "5",
+              "duration": 3
+            },
+            {
+              "subjectId": "6",
+              "duration": 5
+            },
+            {
+              "subjectId": "7",
+              "duration": 3
+            },
+            {
+              "subjectId": "8",
+              "duration": 3
+            }
+          ]
+        },
+        {
+          "id": "1_2",
+          "name": "2do Curso",
+          "subjects": [
+            {
+              "subjectId": "9",
+              "duration": 7
+            },
+            {
+              "subjectId": "10",
+              "duration": 6
+            },
+            {
+              "subjectId": "11",
+              "duration": 6
+            },
+            {
+              "subjectId": "12",
+              "duration": 6
+            },
+            {
+              "subjectId": "13",
+              "duration": 6
+            },
+            {
+              "subjectId": "14",
+              "duration": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
       "name": "AUTOMOCIÓN",
       "courses": [
         {

@@ -8,6 +8,14 @@ class CourseSubject{
   CourseSubject.create(
       this.subjectId, this.weeklyHours, {this.teacherId, this.totalHours, this.classHours});
 
+  CourseSubject addTeacher(String teacherId) {
+    return CourseSubject.create(subjectId, weeklyHours, teacherId: teacherId);
+  }
+
+  CourseSubject removeTeacher(String teacherId) {
+    return CourseSubject.create(subjectId, weeklyHours);
+  }
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||

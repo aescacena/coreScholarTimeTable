@@ -39,7 +39,7 @@ La función objetivo que se desea optimizar es máximizar la suma de las prefere
 - Horario disponible de los profesores para impartir clases.
 
 ### Restricciones duras
-- Un profesor solo ouede impartir una asignatura a la vez
+- Un profesor solo puede impartir una asignatura a la vez
 - No pueden programarse a la misma hora asignaturas diferentes con el mismo grupo de estudiantes
 - Cada asignatura debe impartirse el número de veces y en días diferentes necesarios para cubrir las horas requeridas. Es decir no pueden programarse continuas o para un mismo día.
 - Deben programarse todas las asignaturas.

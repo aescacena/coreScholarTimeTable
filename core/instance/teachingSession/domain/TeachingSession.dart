@@ -4,8 +4,8 @@ class TeachingSession{
   final String                 id;
   final String                 subjectId;
   final String                 teacherId;
-  final String                 groupStudentsId;
+  final String                 courseId;
   final TeachingSessionSubject subject;
 
-  TeachingSession.create(this.id, this.subjectId, this.teacherId, this.groupStudentsId, this.subject);
+  TeachingSession.create(this.id, this.subjectId, this.teacherId, this.courseId, this.subject);
 }
