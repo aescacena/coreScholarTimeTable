@@ -12,14 +12,14 @@ void main(){
       var teachers     = ["1", "2", "3"];
 
       // Act
-      var assigner = SubjectAssigner.assignSubjects(subjects, timeSubjects, teachers);
+      var assignments = SubjectAssigner.assignSubjects(subjects, timeSubjects, teachers);
 
       // Assert
-      for(var i = 0; i < subjects.length; i++){
-        expect(assigner.isSubjectAssigned(i), isTrue);
+      for(var subject in subjects){
+        expect(assignments.any((actualAssignment) => actualAssignment.subjectId == subject), isTrue);
       }
-      for(var i = 0; i < teachers.length; i++){
-        expect(assigner.isTeacherAssigned(i), isTrue);
+      for(var teacher in teachers){
+        expect(assignments.any((actualAssignment) => actualAssignment.teacherId == teacher), isTrue);
       }
     });
     test("Should some subject is not assigned", () {
@@ -29,16 +29,13 @@ void main(){
       var teachers     = ["1", "2", "3"];
 
       // Act
-      var assigner = SubjectAssigner.assignSubjects(subjects, timeSubjects, teachers);
+      var assignments = SubjectAssigner.assignSubjects(subjects, timeSubjects, teachers);
 
       // Assert
-      expect(assigner.isSubjectAssigned(0), isTrue);
-      expect(assigner.isSubjectAssigned(1), isTrue);
-      expect(assigner.isSubjectAssigned(2), isTrue);
-      expect(assigner.isSubjectNotAssigned(3), isTrue);
-      for(var i = 0; i < teachers.length; i++){
-        expect(assigner.isTeacherAssigned(i), isTrue);
-      }
+      expect(assignments.any((actualAssignment) => actualAssignment.subjectId == subjects[0]), isTrue);
+      expect(assignments.any((actualAssignment) => actualAssignment.subjectId == subjects[1]), isTrue);
+      expect(assignments.any((actualAssignment) => actualAssignment.subjectId == subjects[2]), isTrue);
+      expect(assignments.any((actualAssignment) => actualAssignment.subjectId == subjects[3]), isFalse);
     });
   });
 }

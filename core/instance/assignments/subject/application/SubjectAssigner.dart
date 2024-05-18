@@ -1,33 +1,37 @@
 
+import '../domain/AssignmentSubject.dart';
+
 class SubjectAssigner{
-  final List<String> subjects;
+  final List<String> _subjects;
   final List<int>    _timeSubjects;
-  final List<String> teachers;
-  final int          maximumHours = 18;
+  final List<String> _teachers;
+  final int          _maximumHours = 18;
   List<List<int>>    _assignments = [];
 
-  SubjectAssigner._(this.subjects, this._timeSubjects, this.teachers){
-    _assignments = List.generate(this.subjects.length, (i) => List.filled(this.teachers.length, 0));
+  SubjectAssigner._(this._subjects, this._timeSubjects, this._teachers){
+    _assignments = List.generate(this._subjects.length, (i) => List.filled(this._teachers.length, 0));
   }
 
-  static SubjectAssigner assignSubjects(List<String> subjects, List<int> timeSubjects, List<String> teachers){
+  static List<AssignmentSubject> assignSubjects(List<String> subjects, List<int> timeSubjects, List<String> teachers){
     var assigner = SubjectAssigner._(subjects, timeSubjects, teachers);
-    assigner._assignSubjects();
-    return assigner;
+    return assigner._assignSubjects();
   }
 
-  void _assignSubjects(){
-    for(var subject = 0; subject < subjects.length; subject++){
+  List<AssignmentSubject> _assignSubjects(){
+    List<AssignmentSubject> assignments = [];
+    for(var subject = 0; subject < _subjects.length; subject++){
       var bestTeacher = _selectBestTeacher();
       if(_exceedsTimeLimit(subject, bestTeacher)){
-        return;
+        break;
       }
-      _assign(subject, _selectBestTeacher());
+      _assign(subject, bestTeacher);
+      assignments.add(AssignmentSubject(_subjects[subject], _teachers[bestTeacher]));
     }
+    return assignments;
   }
 
-  bool isTeacherAssigned(int teacher){
-    for(var subject = 0; subject < subjects.length; subject++){
+  bool _isTeacherAssigned(int teacher){
+    for(var subject = 0; subject < _subjects.length; subject++){
       if(_subjectAssignedToTeacher(subject, teacher)){
         return true;
       }
@@ -35,12 +39,12 @@ class SubjectAssigner{
     return false;
   }
 
-  bool isTeacherNotAssigned(int teacher){
-    return !isTeacherAssigned(teacher);
+  bool _isTeacherNotAssigned(int teacher){
+    return !_isTeacherAssigned(teacher);
   }
 
-  bool isSubjectAssigned(int subject){
-    for(var teacher = 0; teacher < teachers.length; teacher++){
+  bool _isSubjectAssigned(int subject){
+    for(var teacher = 0; teacher < _teachers.length; teacher++){
       if(_subjectAssignedToTeacher(subject, teacher)){
         return true;
       }
@@ -48,8 +52,8 @@ class SubjectAssigner{
     return false;
   }
 
-  bool isSubjectNotAssigned(int subject){
-    return !this.isSubjectAssigned(subject);
+  bool _isSubjectNotAssigned(int subject){
+    return !_isSubjectAssigned(subject);
   }
 
   void _assign(int subject, int teacher){
@@ -59,7 +63,7 @@ class SubjectAssigner{
   int _selectBestTeacher(){
     var bestTeacher  = -1;
     var bestTimeCost = 0;
-    for(var teacher = 0; teacher < teachers.length; teacher++){
+    for(var teacher = 0; teacher < _teachers.length; teacher++){
       var actualCost = _calculateTeacherTime(teacher);
       if((bestTeacher == -1) || (actualCost < bestTimeCost)){
         bestTeacher  = teacher;
@@ -74,7 +78,7 @@ class SubjectAssigner{
 
   int _calculateTeacherTime(int teacher){
     var cost = 0;
-    for(var subject = 0; subject < subjects.length; subject++){
+    for(var subject = 0; subject < _subjects.length; subject++){
       if(_subjectAssignedToTeacher(subject, teacher)){
         cost += _subjectTime(subject);
       }
@@ -91,6 +95,6 @@ class SubjectAssigner{
   }
 
   bool _exceedsTimeLimit(int subject, int teacher){
-    return maximumHours < (_subjectTime(subject) + _calculateTeacherTime(teacher));
+    return _maximumHours < (_subjectTime(subject) + _calculateTeacherTime(teacher));
   }
 }
