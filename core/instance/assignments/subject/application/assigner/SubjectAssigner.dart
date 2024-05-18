@@ -1,5 +1,5 @@
 
-import '../domain/AssignmentSubject.dart';
+import '../../domain/AssignmentSubject.dart';
 
 class SubjectAssigner{
   final List<String> _subjects;

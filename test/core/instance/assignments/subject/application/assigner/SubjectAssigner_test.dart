@@ -1,7 +1,7 @@
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
-import '../../../../../../core/instance/assignments/subject/application/SubjectAssigner.dart';
+import '../../../../../../../core/instance/assignments/subject/application/assigner/SubjectAssigner.dart';
 
 void main(){
   group("Service assigner", () {
