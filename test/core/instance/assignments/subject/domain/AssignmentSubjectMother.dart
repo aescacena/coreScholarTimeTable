@@ -13,7 +13,7 @@ class AssignmentSubjectMother{
   }
 
   static List<AssignmentSubject> randomList(){
-    var total = faker.randomGenerator.integer(5);
+    var total = faker.randomGenerator.integer(5, min: 2);
     List<AssignmentSubject> assignments = [];
     for(var i = 0; i < total; i++){
       assignments.add(random());

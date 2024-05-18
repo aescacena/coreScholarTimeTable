@@ -10,4 +10,10 @@ class AssignmentSubject{
       'teacherId': teacherId
     };
   }
+
+  static AssignmentSubject fromPrimitives(Map<String, dynamic> data){
+    return AssignmentSubject(
+        data['subjectId'],
+        data['teacherId']);
+  }
 }
