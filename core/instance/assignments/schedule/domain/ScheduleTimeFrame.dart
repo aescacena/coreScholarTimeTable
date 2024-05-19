@@ -1,6 +1,6 @@
 class ScheduleTimeFrame{
-  final int id;          // Indetificador de frame
-  //final int    numberFrame; // Número de fragmento
+  final int id;
+  final int period;
 
-  ScheduleTimeFrame(this.id/*, this.numberFrame*/);
+  ScheduleTimeFrame(this.id, this.period);
 }

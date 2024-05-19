@@ -5,7 +5,7 @@ import '../../../../../../core/instance/assignments/schedule/domain/ScheduleClas
 import '../../../../../../core/instance/assignments/schedule/domain/ScheduleCourse.dart';
 import '../../../../../../core/instance/assignments/schedule/domain/ScheduleSubject.dart';
 import '../../../../../../core/instance/assignments/schedule/domain/ScheduleTeacher.dart';
-import '../../../../../../core/instance/assignments/schedule/domain/ScheduleTimeFrame.dart';
+import 'ScheduleTimeFrameMother.dart';
 
 void main(){
   group("Assignment Scheduler", () {
@@ -15,7 +15,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames          = List.generate(40, (index) => ScheduleTimeFrame(index + 1));
+      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerDay(5, 8);
       var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
 
       // Act
@@ -32,7 +32,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames          = List.generate(40, (index) => ScheduleTimeFrame(index + 1));
+      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerDay(5, 8);
       var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
 
       // Act
@@ -50,7 +50,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames          = List.generate(40, (index) => ScheduleTimeFrame(index + 1));
+      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerDay(5, 8);
       var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
 
       // Act
@@ -68,7 +68,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames          = List.generate(40, (index) => ScheduleTimeFrame(index + 1));
+      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerDay(5, 8);
       var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
 
       // Act
@@ -86,7 +86,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames          = List.generate(40, (index) => ScheduleTimeFrame(index + 1));
+      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerDay(5, 8);
       var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
 
       // Act
@@ -104,7 +104,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
-      var timeFrames          = List.generate(40, (index) => ScheduleTimeFrame(index + 1));
+      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerDay(5, 8);
       var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
 
       // Act
@@ -122,7 +122,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
-      var timeFrames          = List.generate(40, (index) => ScheduleTimeFrame(index + 1));
+      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerDay(5, 8);
       var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
 
       // Act
