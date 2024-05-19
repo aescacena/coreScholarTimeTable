@@ -79,4 +79,40 @@ class AssignmentScheduler{
     }
     return true;
   }
+
+  // Restriction 4: Each subject must be scheduled the required number of times
+  /*bool checkSubjectSessionsConstraint() {
+    for (int i = 0; i < problem.subjects.length; i++) {
+      int sum = 0;
+      for (int j = 0; j < problem.classRooms.length; j++) {
+        for (int k = 0; k < problem.timeFrames.length; k++) {
+          if(assignments.isAssigned(i, j, k)){
+            sum++;
+          }
+        }
+      }
+      if (sum != problem.subjects[i].sessions) return false;
+    }
+    return true;
+  }*/
+
+  /*
+  // Restriction 5: Subjects must be scheduled in the correct turn
+  bool checkGroupTurnConstraint() {
+    for (int q = 0; q < groups.length; q++) {
+      var E_q = groups[q].subjects.map((subjectId) => subjects.indexWhere((s) => s.id == subjectId)).toList();
+      int v_q = groups[q].turn;
+      for (int i in E_q) {
+        for (int j = 0; j < classrooms.length; j++) {
+          for (int k = 0; k < periods.length; k++) {
+            if (x[i][j][k] == 1 && ((k < 20 && v_q != 0) || (k >= 20 && v_q != 1))) {
+              return false;
+            }
+          }
+        }
+      }
+    }
+    return true;
+  }
+   */
 }
