@@ -3,4 +3,8 @@ class ScheduleSubject{
   final List<int> sessions;
 
   ScheduleSubject(this.id, this.sessions);
+
+  int totalSessions(){
+    return sessions.length;
+  }
 }

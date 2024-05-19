@@ -81,20 +81,24 @@ class AssignmentScheduler{
   }
 
   // Restriction 4: Each subject must be scheduled the required number of times
-  /*bool checkSubjectSessionsConstraint() {
+  bool checkSubjectSessionsConstraint() {
     for (int i = 0; i < problem.subjects.length; i++) {
       int sum = 0;
       for (int j = 0; j < problem.classRooms.length; j++) {
-        for (int k = 0; k < problem.timeFrames.length; k++) {
-          if(assignments.isAssigned(i, j, k)){
-            sum++;
+        for(var timeFrameId in problem.timeFrameIds()){
+          for (int k = 0; k < problem.timeFrames.length; k++) {
+            if(problem.timeFrames[k].id == timeFrameId){
+              if(assignments.isAssigned(i, j, k)){
+                sum++;
+              }
+            }
           }
         }
       }
-      if (sum != problem.subjects[i].sessions) return false;
+      if (sum != problem.subjects[i].totalSessions()) return false;
     }
     return true;
-  }*/
+  }
 
   /*
   // Restriction 5: Subjects must be scheduled in the correct turn

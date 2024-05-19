@@ -12,4 +12,14 @@ class AssignmentProblem{
   final List<ScheduleTimeFrame> timeFrames;
 
   AssignmentProblem(this.subjects, this.teachers, this.classRooms, this.courses, this.timeFrames);
+
+  List<int> timeFrameIds(){
+    List<int> ids = [];
+    for(var timeFrame in timeFrames){
+      if(!ids.contains(timeFrame.id)){
+        ids.add(timeFrame.id);
+      }
+    }
+    return ids;
+  }
 }
