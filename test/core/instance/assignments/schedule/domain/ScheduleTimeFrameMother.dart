@@ -1,14 +1,15 @@
 import '../../../../../../core/instance/assignments/schedule/domain/ScheduleTimeFrame.dart';
 
 class ScheduleTimeFrameMother{
-  static ScheduleTimeFrame create(int id, int period){
-    return new ScheduleTimeFrame(id, period);
+  static ScheduleTimeFrame create(int id, int period, int turn){
+    return new ScheduleTimeFrame(id, period, turn);
   }
   
-  static List<ScheduleTimeFrame> withPeriodPerDay(int days, int periodPerDay){
+  static List<ScheduleTimeFrame> withPeriodPerTurn(int days, int periodPerTurn){
     List<ScheduleTimeFrame> timeFrame = [];
     for(var day = 0; day < days; day++){
-      timeFrame.addAll(List.generate(periodPerDay, (index) => ScheduleTimeFrame(day, (index))));
+      timeFrame.addAll(List.generate(periodPerTurn, (index) => ScheduleTimeFrame(day, (index), 0)));
+      timeFrame.addAll(List.generate(periodPerTurn, (index) => ScheduleTimeFrame(day, (index), 1)));
     }
     return timeFrame;
   }

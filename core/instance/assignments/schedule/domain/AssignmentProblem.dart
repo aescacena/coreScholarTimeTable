@@ -22,4 +22,20 @@ class AssignmentProblem{
     }
     return ids;
   }
+
+  int numberCourses(){
+    return this.courses.length;
+  }
+
+  int numberClassRooms(){
+    return this.courses.length;
+  }
+
+  int numberTimeFrames(){
+    return this.timeFrames.length;
+  }
+
+  int turnFrame(int frame){
+    return this.timeFrames[frame].turn;
+  }
 }

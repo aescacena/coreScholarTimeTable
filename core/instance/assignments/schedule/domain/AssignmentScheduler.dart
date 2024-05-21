@@ -100,16 +100,16 @@ class AssignmentScheduler{
     return true;
   }
 
-  /*
   // Restriction 5: Subjects must be scheduled in the correct turn
   bool checkGroupTurnConstraint() {
-    for (int q = 0; q < groups.length; q++) {
-      var E_q = groups[q].subjects.map((subjectId) => subjects.indexWhere((s) => s.id == subjectId)).toList();
-      int v_q = groups[q].turn;
-      for (int i in E_q) {
-        for (int j = 0; j < classrooms.length; j++) {
-          for (int k = 0; k < periods.length; k++) {
-            if (x[i][j][k] == 1 && ((k < 20 && v_q != 0) || (k >= 20 && v_q != 1))) {
+    for (int q = 0; q < problem.numberCourses(); q++) {
+      //var subjectsOnCourse = problem.courses[q].subjects.map((subjectId) => problem.subjects.indexWhere((s) => s.id == subjectId)).toList();
+      var subjectsOnCourse = problem.courses[q].subjects.map((subjectId) => problem.subjects.indexWhere((s) => s.id == subjectId)).toList();
+      int turn = problem.courses[q].turn;
+      for (int i in subjectsOnCourse) {
+        for (int j = 0; j < problem.numberClassRooms(); j++) {
+          for (int k = 0; k < problem.numberTimeFrames(); k++) {
+            if (assignments.isAssigned(i, j, k) && (problem.turnFrame(k) != turn)) {
               return false;
             }
           }
@@ -118,5 +118,4 @@ class AssignmentScheduler{
     }
     return true;
   }
-   */
 }
