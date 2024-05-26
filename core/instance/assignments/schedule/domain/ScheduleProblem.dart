@@ -4,14 +4,14 @@ import 'ScheduleSubject.dart';
 import 'ScheduleTeacher.dart';
 import 'ScheduleTimeFrame.dart';
 
-class AssignmentProblem{
+class ScheduleProblem{
   final List<ScheduleSubject>   subjects;
   final List<ScheduleTeacher>   teachers;
   final List<ScheduleClassRoom> classRooms;
   final List<ScheduleCourse>    courses;
   final List<ScheduleTimeFrame> timeFrames;
 
-  AssignmentProblem(this.subjects, this.teachers, this.classRooms, this.courses, this.timeFrames);
+  ScheduleProblem(this.subjects, this.teachers, this.classRooms, this.courses, this.timeFrames);
 
   List<int> timeFrameIds(){
     List<int> ids = [];
@@ -37,5 +37,9 @@ class AssignmentProblem{
 
   int turnFrame(int frame){
     return this.timeFrames[frame].turn;
+  }
+
+  int numberSubjects(){
+    return this.subjects.length;
   }
 }
