@@ -1,5 +1,6 @@
 import 'package:test/test.dart';
 
+import '../../../../../../core/instance/assignments/schedule/domain/AssignmentProblem.dart';
 import '../../../../../../core/instance/assignments/schedule/domain/AssignmentScheduler.dart';
 import '../../../../../../core/instance/assignments/schedule/domain/ScheduleClassRoom.dart';
 import '../../../../../../core/instance/assignments/schedule/domain/ScheduleCourse.dart';
@@ -16,7 +17,7 @@ void main(){
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
       var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
-      var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
+      var assignmentScheduler = AssignmentScheduler.empty(new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
       var result = assignmentScheduler.assign(0, 0, 0);
@@ -33,7 +34,7 @@ void main(){
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
       var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
-      var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
+      var assignmentScheduler = AssignmentScheduler.empty(new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
       var result = assignmentScheduler.assign(0, 0, 0);
@@ -51,7 +52,7 @@ void main(){
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
       var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
-      var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
+      var assignmentScheduler = AssignmentScheduler.empty(new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
       var result = assignmentScheduler.assign(0, 0, 0);
@@ -69,7 +70,7 @@ void main(){
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
       var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
-      var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
+      var assignmentScheduler = AssignmentScheduler.empty(new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
       var result = assignmentScheduler.assign(0, 0, 0);
@@ -87,7 +88,7 @@ void main(){
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
       var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
-      var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
+      var assignmentScheduler = AssignmentScheduler.empty(new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
       var result = assignmentScheduler.assign(0, 0, 0);
@@ -105,7 +106,7 @@ void main(){
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
       var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
-      var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
+      var assignmentScheduler = AssignmentScheduler.empty(new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
       var result = assignmentScheduler.assign(0, 0, 0); // Subject S1 on Time 0
@@ -123,7 +124,7 @@ void main(){
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
       var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
-      var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
+      var assignmentScheduler = AssignmentScheduler.empty(new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
       var result = assignmentScheduler.assign(0, 0, 0); // Subject S1 on Time 0
@@ -143,7 +144,7 @@ void main(){
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0)];
       var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(2, 2);
-      var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
+      var assignmentScheduler = AssignmentScheduler.empty(new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
       var result = assignmentScheduler.assign(0, 0, 0); // Subject S1 on Time 0 (Day 1)
@@ -161,7 +162,7 @@ void main(){
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
       var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(2, 2);
-      var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
+      var assignmentScheduler = AssignmentScheduler.empty(new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
       var result = assignmentScheduler.assign(0, 0, 0); // Subject S1 on Time 0 (Day 1)
@@ -179,7 +180,7 @@ void main(){
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
       var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(2, 2);
-      var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
+      var assignmentScheduler = AssignmentScheduler.empty(new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
       var result = assignmentScheduler.assign(0, 0, 0); // Subject S1 on Time 0 (Day 1)
@@ -198,7 +199,7 @@ void main(){
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0)];
       var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(2, 2);
-      var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
+      var assignmentScheduler = AssignmentScheduler.empty(new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
       var result = assignmentScheduler.assign(0, 0, 0); // Subject S1 on first turn(Day 1)
@@ -216,7 +217,7 @@ void main(){
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0)];
       var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(2, 2);
-      var assignmentScheduler = AssignmentScheduler.createEmpty(subjects, teachers, classRooms, courses, timeFrames);
+      var assignmentScheduler = AssignmentScheduler.empty(new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
       var result = assignmentScheduler.assign(0, 0, 0); // Subject S1 on first turn(Day 1)

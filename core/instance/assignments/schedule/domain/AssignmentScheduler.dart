@@ -1,32 +1,38 @@
 import 'AssignmentProblem.dart';
-import 'ScheduleAssignment.dart';
-import 'ScheduleClassRoom.dart';
-import 'ScheduleCourse.dart';
-import 'ScheduleSubject.dart';
-import 'ScheduleTeacher.dart';
-import 'ScheduleTimeFrame.dart';
 
 class AssignmentScheduler{
-  final AssignmentProblem   problem;
-  final ScheduleAssignments assignments; //[subject][classRoom][timeFrame]
+  final AssignmentProblem problem;
+  final List<List<List>>  assignments; //i -> subject, j -> classRoom, k -> timeFrame
 
-  AssignmentScheduler.create(this.problem, this.assignments);
+  AssignmentScheduler._(this.problem, this.assignments);
 
-  static AssignmentScheduler createEmpty(
-      List<ScheduleSubject> subjects, List<ScheduleTeacher> teachers, List<ScheduleClassRoom> classRooms,
-      List<ScheduleCourse> courses, List<ScheduleTimeFrame> timeFrames){
-    return AssignmentScheduler.create(
-        new AssignmentProblem(subjects, teachers, classRooms, courses, timeFrames),
-        ScheduleAssignments.empty(subjects.length, classRooms.length, timeFrames.length));
+  static AssignmentScheduler empty(AssignmentProblem problem){
+    return AssignmentScheduler._(
+        problem, AssignmentScheduler.assignmentsEmpty(
+        problem.subjects.length, problem.classRooms.length, problem.timeFrames.length));
   }
 
-  AssignmentScheduler assign(int subject, int classRoom, int timeFrame){
-    return AssignmentScheduler.create(
-        problem, assignments.assign(subject, classRoom, timeFrame));
+  static List<List<List>> assignmentsEmpty(int totalSubjects, int totalClassRooms, int totalTimeFrames){
+    return List.generate(totalSubjects,
+            (i) => List.generate(totalClassRooms,
+                (j) => List.generate(totalTimeFrames,
+                    (k) => 0)));
   }
 
   bool isAssigned(int subject, int classRoom, int timeFrame){
-    return assignments.isAssigned(subject, classRoom, timeFrame);
+    return assignments[subject][classRoom][timeFrame] == 1;
+  }
+
+  List<List<List>> _copy(){
+    return assignments.map((level2) =>
+        level2.map((level1) =>
+        List<int>.from(level1)).toList()).toList();
+  }
+
+  AssignmentScheduler assign(int subject, int classRoom, int timeFrame){
+    var newAssignment = _copy();
+    newAssignment[subject][classRoom][timeFrame] = 1;
+    return AssignmentScheduler._(this.problem, newAssignment);
   }
 
   bool checkTeacherCanTeachOneTeachAtATime() {
@@ -36,7 +42,7 @@ class AssignmentScheduler{
         int sum = 0;
         for (int i in teacherSubjects) {
           for (int j = 0; j < problem.classRooms.length; j++) {
-            if(assignments.isAssigned(i, j, k)){
+            if(isAssigned(i, j, k)){
               sum++;
             }
           }
@@ -52,7 +58,7 @@ class AssignmentScheduler{
       for (int k = 0; k < problem.timeFrames.length; k++) {
         int sum = 0;
         for (int i = 0; i < problem.subjects.length; i++) {
-          if(assignments.isAssigned(i, j, k)){
+          if(isAssigned(i, j, k)){
             sum++;
           }
         }
@@ -69,7 +75,7 @@ class AssignmentScheduler{
         int sum = 0;
         for (int i in subjectsOnCourse) {
           for (int j = 0; j < problem.classRooms.length; j++) {
-            if(assignments.isAssigned(i, j, k)) {
+            if(isAssigned(i, j, k)) {
               sum++;
             }
           }
@@ -88,7 +94,7 @@ class AssignmentScheduler{
         for(var timeFrameId in problem.timeFrameIds()){
           for (int k = 0; k < problem.timeFrames.length; k++) {
             if(problem.timeFrames[k].id == timeFrameId){
-              if(assignments.isAssigned(i, j, k)){
+              if(isAssigned(i, j, k)){
                 sum++;
               }
             }
@@ -109,7 +115,7 @@ class AssignmentScheduler{
       for (int i in subjectsOnCourse) {
         for (int j = 0; j < problem.numberClassRooms(); j++) {
           for (int k = 0; k < problem.numberTimeFrames(); k++) {
-            if (assignments.isAssigned(i, j, k) && (problem.turnFrame(k) != turn)) {
+            if (isAssigned(i, j, k) && (problem.turnFrame(k) != turn)) {
               return false;
             }
           }
