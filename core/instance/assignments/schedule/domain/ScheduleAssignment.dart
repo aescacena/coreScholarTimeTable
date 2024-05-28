@@ -117,7 +117,7 @@ class ScheduleAssignment{
       int turn = problem.courses[q].turn;
       for (int i in subjectsOnCourse) {
         for (int j = 0; j < problem.numberClassRooms(); j++) {
-          for (int k = 0; k < problem.numberTimeFrames(); k++) {
+          for (int k = 0; k < problem.numberPeriods(); k++) {
             if (isAssigned(i, j, k) && (problem.turnFrame(k) != turn)) {
               return false;
             }
@@ -141,5 +141,34 @@ class ScheduleAssignment{
         && this.checkSubjectIsTaughtInOneClassroomAtTheSameTime()
         && this.checkCourseNotHaveSubjectsAtTheSameTime()
         && this.checkGroupTurnConstraint();
+  }
+
+  // Method for counting gaps in teachers' schedules
+  int countTeacherGaps(){
+    int gaps = 0;
+    for(int teacher = 0; teacher < problem.numberTeacher(); teacher++){
+      var teacherSubjects = problem.positionForTeacherSubjects(teacher);
+      for(int day = 0; day < problem.numberDays(); day++){
+        List<int> periods = [];
+        for(int i in teacherSubjects){
+          for(int j = 0; j < problem.numberClassRooms(); j++){
+            List<int> periodsId = problem.positionPeriodsOnTimeFrame(day);
+            for(var periodId in periodsId){
+              if(isAssigned(i, j, periodId)){
+                periods.add(periodId);
+              }
+            }
+          }
+        }
+        periods.sort();
+        for(int p = 1; p < periods.length; p++){
+          var diff = periods[p] - periods[p - 1];
+          if(diff > 1){
+            gaps += diff - 1;
+          }
+        }
+      }
+    }
+    return gaps;
   }
 }

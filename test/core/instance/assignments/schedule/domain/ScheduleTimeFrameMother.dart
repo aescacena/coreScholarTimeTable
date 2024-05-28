@@ -5,7 +5,7 @@ class ScheduleTimeFrameMother{
     return new ScheduleTimeFrame(id, period, turn);
   }
   
-  static List<ScheduleTimeFrame> withPeriodPerTurn(int days, int periodPerTurn){
+  static List<ScheduleTimeFrame> withDaysAndPeriodPerTurn(int days, int periodPerTurn){
     List<ScheduleTimeFrame> timeFrame = [];
     for(var day = 0; day < days; day++){
       timeFrame.addAll(List.generate(periodPerTurn, (index) => ScheduleTimeFrame(day, (index), 0)));

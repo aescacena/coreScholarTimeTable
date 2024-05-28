@@ -16,7 +16,7 @@ void main(){
       var teachers   = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses    = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
+      var timeFrames = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(5, 4);
       var problem    = new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames);
       var assign     = new BacktrackingScheduleAssign();
 
@@ -32,7 +32,7 @@ void main(){
       var teachers   = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses    = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames = ScheduleTimeFrameMother.withPeriodPerTurn(1, 1);
+      var timeFrames = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(1, 1);
       var problem    = new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames);
       var assign     = new BacktrackingScheduleAssign();
 

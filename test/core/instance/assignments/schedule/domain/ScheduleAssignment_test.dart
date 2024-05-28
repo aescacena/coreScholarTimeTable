@@ -16,7 +16,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(5, 4);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -25,13 +25,13 @@ void main(){
       // Assert
       expect(result.isAssigned(0, 0, 0), isTrue);
     });
-    test("Should all subjects are assigned", () {
+    test("Should true when check subject is assigned", () {
       // Arrange
       var subjects            = [ScheduleSubject("S1", [1, 1, 1]), ScheduleSubject("S2", [1, 1])];
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(5, 4);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -48,7 +48,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(5, 4);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -66,7 +66,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(5, 4);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -84,7 +84,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(5, 4);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -102,7 +102,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1"], 0), ScheduleCourse("G2", ["S2"], 1)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(5, 4);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -120,7 +120,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(5, 4);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -138,7 +138,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(5, 4);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(5, 4);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -158,7 +158,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(2, 2);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(2, 2);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -176,7 +176,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(2, 2);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(2, 2);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -194,7 +194,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(2, 2);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(2, 2);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -213,7 +213,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(2, 2);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(2, 2);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -231,7 +231,7 @@ void main(){
       var teachers            = [ScheduleTeacher("T1", ["S1"]), ScheduleTeacher("T2", ["S2"])];
       var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
       var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0)];
-      var timeFrames          = ScheduleTimeFrameMother.withPeriodPerTurn(2, 2);
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(2, 2);
       var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
 
       // Act
@@ -240,6 +240,40 @@ void main(){
 
       // Assert
       expect(result.checkGroupTurnConstraint(), isFalse);
+    });
+  });
+  group("Check teacher schedule gaps", (){
+    test("Should return 0 because not exist gaps", (){
+      // Arrange
+      var subjects            = [ScheduleSubject("S1", [1]), ScheduleSubject("S2", [1]), ScheduleSubject("S3", [1])];
+      var teachers            = [ScheduleTeacher("T1", ["S1", "S2"]), ScheduleTeacher("T2", ["S3"])];
+      var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
+      var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(5, 4);
+      var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
+
+      // Act
+      var result = assignmentScheduler.assign(0, 0, 2);
+      result     = result.assign(1, 0, 3);
+
+      // Assert
+      expect(result.countTeacherGaps(), isZero);
+    });
+    test("Should return 2 because exist gaps", (){
+      // Arrange
+      var subjects            = [ScheduleSubject("S1", [1]), ScheduleSubject("S2", [1]), ScheduleSubject("S3", [1])];
+      var teachers            = [ScheduleTeacher("T1", ["S1", "S2"]), ScheduleTeacher("T2", ["S3"])];
+      var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
+      var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(4, 6);
+      var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
+
+      // Act
+      var result = assignmentScheduler.assign(0, 0, 0);
+      result     = result.assign(1, 0, 4);
+
+      // Assert
+      expect(result.countTeacherGaps(), 3);
     });
   });
 }

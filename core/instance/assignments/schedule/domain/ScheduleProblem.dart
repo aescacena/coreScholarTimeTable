@@ -23,6 +23,16 @@ class ScheduleProblem{
     return ids;
   }
 
+  List<int> positionPeriodsOnTimeFrame(int id){
+    List<int> periods = [];
+    for(int i = 0; i < this.timeFrames.length; i++){
+      if(this.timeFrames[i].id == id){
+        periods.add(i);
+      }
+    }
+    return periods;
+  }
+
   int numberCourses(){
     return this.courses.length;
   }
@@ -31,8 +41,12 @@ class ScheduleProblem{
     return this.courses.length;
   }
 
-  int numberTimeFrames(){
+  int numberPeriods(){
     return this.timeFrames.length;
+  }
+
+  int numberDays(){
+    return this.timeFrames.map((e) => e.id).toSet().toList().length;
   }
 
   int turnFrame(int frame){
@@ -41,5 +55,24 @@ class ScheduleProblem{
 
   int numberSubjects(){
     return this.subjects.length;
+  }
+
+  int numberTeacher(){
+    return this.teachers.length;
+  }
+
+  List<int> positionForTeacherSubjects(int teacher){
+    return teachers[teacher].subjects.map((subjectId) =>
+        subjects.indexWhere((s) => s.id == subjectId)).toList();
+  }
+
+  List<int> positionForTimeFrame(int timeFrameId){
+    List<int> positions = [];
+    for(int i = 0; i < timeFrames.length; i++){
+      if(timeFrames[i].id == timeFrameId){
+        positions.add(i);
+      }
+    }
+    return positions;
   }
 }
