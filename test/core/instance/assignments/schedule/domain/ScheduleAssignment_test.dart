@@ -275,5 +275,23 @@ void main(){
       // Assert
       expect(result.countTeacherGaps(), 3);
     });
+    test("Should return 3 because exist gaps for 2 teachers", (){
+      // Arrange
+      var subjects            = [ScheduleSubject("S1", [1]), ScheduleSubject("S2", [1]), ScheduleSubject("S3", [1, 1])];
+      var teachers            = [ScheduleTeacher("T1", ["S1", "S2"]), ScheduleTeacher("T2", ["S3"])];
+      var classRooms          = [ScheduleClassRoom("A1"), ScheduleClassRoom("A2")];
+      var courses             = [ScheduleCourse("G1", ["S1", "S2"], 0), ScheduleCourse("G2", ["S3"], 1)];
+      var timeFrames          = ScheduleTimeFrameMother.withDaysAndPeriodPerTurn(4, 6);
+      var assignmentScheduler = ScheduleAssignment.empty(new ScheduleProblem(subjects, teachers, classRooms, courses, timeFrames));
+
+      // Act
+      var result = assignmentScheduler.assign(0, 0, 0);
+      result     = result.assign(1, 0, 3);
+      result     = result.assign(2, 1, 7);
+      result     = result.assign(2, 1, 9);
+
+      // Assert
+      expect(result.countTeacherGaps(), 3);
+    });
   });
 }
