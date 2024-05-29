@@ -1,6 +1,6 @@
 import '../ScheduleAssignment.dart';
 import '../ScheduleProblem.dart';
 
-abstract class ScheduleAssign{
+abstract class ScheduleAssigner{
   ScheduleAssignment? solve(ScheduleProblem problem);
 }

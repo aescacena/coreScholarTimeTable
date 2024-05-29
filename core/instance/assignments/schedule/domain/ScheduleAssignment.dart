@@ -4,10 +4,10 @@ class ScheduleAssignment{
   final ScheduleProblem  problem;
   final List<List<List>> assignments; //i -> subject, j -> classRoom, k -> timeFrame
 
-  ScheduleAssignment._(this.problem, this.assignments);
+  ScheduleAssignment.create(this.problem, this.assignments);
 
   static ScheduleAssignment empty(ScheduleProblem problem){
-    return ScheduleAssignment._(
+    return ScheduleAssignment.create(
         problem, ScheduleAssignment.assignmentsEmpty(
         problem.subjects.length, problem.classRooms.length, problem.timeFrames.length));
   }
@@ -23,6 +23,10 @@ class ScheduleAssignment{
     return assignments[subject][classRoom][timeFrame] == 1;
   }
 
+  bool isNotAssigned(int subject, int classRoom, int timeFrame){
+    return !this.isAssigned(subject, classRoom, timeFrame);
+  }
+
   List<List<List>> _copy(){
     return assignments.map((level2) =>
         level2.map((level1) =>
@@ -32,7 +36,13 @@ class ScheduleAssignment{
   ScheduleAssignment assign(int subject, int classRoom, int timeFrame){
     var newAssignment = _copy();
     newAssignment[subject][classRoom][timeFrame] = 1;
-    return ScheduleAssignment._(this.problem, newAssignment);
+    return ScheduleAssignment.create(this.problem, newAssignment);
+  }
+
+  ScheduleAssignment unassign(int subject, int classRoom, int timeFrame){
+    var newAssignment = _copy();
+    newAssignment[subject][classRoom][timeFrame] = 0;
+    return ScheduleAssignment.create(this.problem, newAssignment);
   }
 
   // Restriction 1: A teacher can only teach one subject at a time

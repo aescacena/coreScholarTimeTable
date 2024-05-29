@@ -2,7 +2,7 @@ import '../../ScheduleAssignment.dart';
 import '../../ScheduleProblem.dart';
 import '../ScheduleAssigner.dart';
 
-class BacktrackingScheduleAssign implements ScheduleAssign{
+class BacktrackingScheduleAssigner implements ScheduleAssigner{
 
   ScheduleAssignment? solve(ScheduleProblem problem) {
     var initialAssignment = ScheduleAssignment.empty(problem);
