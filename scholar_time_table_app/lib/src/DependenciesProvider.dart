@@ -5,12 +5,14 @@ import 'package:scholar_time_table_app/src/core/instance/course/domain/use_cases
 import 'package:scholar_time_table_app/src/core/instance/course/infrastructure/InMemoryCourseRepository.dart';
 import 'package:scholar_time_table_app/src/presentation/courses/CourseBloc.dart';
 import 'package:scholar_time_table_app/src/presentation/general_options/GeneralOptionsBloc.dart';
+import 'package:scholar_time_table_app/src/presentation/timetable/TimeTableBloc.dart';
 
 final getIt = GetIt.instance;
 
 void init(){
   registerCourseDependencies();
   registerGeneralOptionsDependencies();
+  registerTimeTableDependencies();
 }
 
 registerCourseDependencies(){
@@ -23,4 +25,8 @@ registerCourseDependencies(){
 
 registerGeneralOptionsDependencies(){
   getIt.registerFactory(() => GeneralOptionsBloc());
+}
+
+registerTimeTableDependencies(){
+  getIt.registerFactory(() => TimeTableBloc());
 }

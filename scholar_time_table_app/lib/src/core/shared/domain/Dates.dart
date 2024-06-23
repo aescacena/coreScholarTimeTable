@@ -22,7 +22,7 @@ class Dates{
     return '$year-$month-$day';
   }
 
-  static DateTime _stringToDateTime(String date){
+  static DateTime stringToDateTime(String date){
     List<String> parts = date.split('-');
     if (parts.length != 3) {
       throw Exception('Formato de fecha inválido');
@@ -39,6 +39,6 @@ class Dates{
   }
 
   static String addDaysFromString(String date, int numberDays){
-    return Dates.addDaysFromDateTime(Dates._stringToDateTime(date), numberDays);
+    return Dates.addDaysFromDateTime(Dates.stringToDateTime(date), numberDays);
   }
 }

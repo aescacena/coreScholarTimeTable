@@ -15,7 +15,7 @@ class GeneralOptionsDrawer extends StatelessWidget{
                 child: ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: IconButton(
-                    icon: Icon(Icons.arrow_back_ios),
+                    icon: Icon(Icons.menu),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -23,7 +23,7 @@ class GeneralOptionsDrawer extends StatelessWidget{
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Icon(Icons.menu),
+                      //Icon(Icons.menu),
                       Text(
                         'Opciones',
                         style: Theme.of(context).textTheme.titleLarge,
