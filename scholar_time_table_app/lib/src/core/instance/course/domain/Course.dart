@@ -28,6 +28,10 @@ class Course{
     return null;
   }
 
+  int numberSubjects(){
+    return subjects.length;
+  }
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||

@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   faker: ^2.1.0
   uuid: ^4.3.2
+  get_it: ^7.2.0
+  path_provider: ^2.0.8
 
   cupertino_icons: ^1.0.6
 
@@ -23,3 +25,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - lib/src/core/resource/data/Courses.json
