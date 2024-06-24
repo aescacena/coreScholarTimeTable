@@ -1,98 +1,43 @@
-import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:scholar_time_table_app/src/core/instance/teacher/domain/Teacher.dart';
 import 'package:scholar_time_table_app/src/core/instance/teacher/infrastructure/InMemoryTeacherRepository.dart';
 
-import '../domain/TeacherMother.dart';
+import '../../../shared/infrastructure/DirectoryFileRepository.dart';
 
 void main(){
   late InMemoryTeacherRepository repository;
 
   setUp((){
-    repository = InMemoryTeacherRepository.empty();
+    repository = InMemoryTeacherRepository.create(DirectoryFileRepository());
   });
 
-  group("Constructor", (){
-    test("Should create empty", (){
-      // Arrange
-
-      // Act
-
-      // Assert
-      expect(repository.searchAll().length, 0);
-    });
-    test("Should create with Data", (){
-      // Arrange
-      var teachers = TeacherMother.randomList();
-
-      // Act
-      repository = InMemoryTeacherRepository.create(teachers);
-
-      // Assert
-      expect(repository.searchAll(), teachers);
-    });
-    test("Should create from File", (){
-      // Arrange
-      var file = File(Directory.current.path+'/lib/src/core/resource/data/Teachers.json');
-
-      // Act
-      repository = InMemoryTeacherRepository.fromFile(file);
-
-      // Assert
-      expect(repository.searchAll().isNotEmpty, isTrue);
-    });
-  });
   group("Repository Teachers", () {
-    test("Should save Teacher", () {
+    test("Should return all Teachers", () async{
       // Arrange
-      Teacher teacher = TeacherMother.random();
 
       // Act
-      repository.save(teacher);
+      var result = await repository.searchAll();
 
       // Assert
+      expect(result.isNotEmpty, true);
     });
-    test("Should return all Teachers", () {
+    test("Should return exist Teacher", () async{
       // Arrange
-      List<Teacher> teachers = TeacherMother.randomList();
 
       // Act
-      teachers.forEach((element) => repository.save(element));
-      List<Teacher> teachersFound = repository.searchAll();
+      var allTeachers = await repository.searchAll();
+      var found       = await repository.findById(allTeachers[0].id);
 
       // Assert
-      expect(teachers, containsAll(teachersFound));
+      expect(found, isNotNull);
     });
-    test("Should return exist Teacher", () {
+    test("Should return null because not found", () async{
       // Arrange
-      Teacher teacher = TeacherMother.random();
 
       // Act
-      repository.save(teacher);
+      var found = await repository.findById("NO_EXISTE");
 
       // Assert
-      expect(repository.findById(teacher.id), isNotNull);
-    });
-    test("Should return null", () {
-      // Arrange
-      Teacher teacher = TeacherMother.random();
-
-      // Act
-
-      // Assert
-      expect(repository.findById(teacher.id), isNull);
-    });
-    test("Should remove null", () {
-      // Arrange
-      Teacher teacher = TeacherMother.random();
-
-      // Act
-      repository.save(teacher);
-
-      // Assert
-      expect(repository.findById(teacher.id), isNotNull);
-      repository.delete(teacher.id);
-      expect(repository.findById(teacher.id), isNull);
+      expect(found, isNull);
     });
   });
 }

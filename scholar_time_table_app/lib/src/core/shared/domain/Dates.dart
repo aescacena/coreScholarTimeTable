@@ -7,6 +7,10 @@ class Dates{
     return Dates.addDaysFromString(date, 1);
   }
 
+  static String addDaysFromToday(int numberDays){
+    return Dates.addDaysFromString(today(), numberDays);
+  }
+
   static List<String> daysFrom(String date, int totalDays){
     List<String> dates = [date];
     for(int i = 1; i < totalDays; i++){
@@ -40,5 +44,10 @@ class Dates{
 
   static String addDaysFromString(String date, int numberDays){
     return Dates.addDaysFromDateTime(Dates.stringToDateTime(date), numberDays);
+  }
+
+  static int dayInWeek(String date){
+    var dateTime = stringToDateTime(date);
+    return dateTime.weekday;
   }
 }

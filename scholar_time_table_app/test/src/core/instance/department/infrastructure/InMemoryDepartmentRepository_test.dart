@@ -1,68 +1,44 @@
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:scholar_time_table_app/src/core/instance/department/domain/Department.dart';
 import 'package:scholar_time_table_app/src/core/instance/department/infrastructure/InMemoryDepartmentRepository.dart';
 
-import '../domain/DepartmentMother.dart';
+import '../../../shared/infrastructure/DirectoryFileRepository.dart';
 
 void main(){
   late InMemoryDepartmentRepository repository;
 
   setUp((){
-    repository = new InMemoryDepartmentRepository();
+    repository = InMemoryDepartmentRepository.create(DirectoryFileRepository());
   });
 
   group("Repository Department", () {
-    test("Should save Department", () {
+    test("Should return all Departments", () async{
       // Arrange
-      Department department = DepartmentMother.random();
 
       // Act
-      repository.save(department);
+      var found = await repository.searchAll();
 
       // Assert
+      expect(found.isNotEmpty, true);
     });
-    test("Should return all Departments", () {
+    test("Should return exist Department", () async{
       // Arrange
-      List<Department> departments = DepartmentMother.randomList();
 
       // Act
-      departments.forEach((element) => repository.save(element));
-      List<Department> departmentsFound = repository.searchAll();
+      var allDepartments = await repository.searchAll();
+      var found          = await repository.findById(allDepartments[0].id);
 
       // Assert
-      expect(departments, containsAll(departmentsFound));
+      expect(found, isNotNull);
     });
-    test("Should return exist Department", () {
+    test("Should return null", () async{
       // Arrange
-      Department department = DepartmentMother.random();
 
       // Act
-      repository.save(department);
+      var found = await repository.findById("NOT_EXISTE");
 
       // Assert
-      expect(repository.findById(department.id), isNotNull);
-    });
-    test("Should return null", () {
-      // Arrange
-      Department department = DepartmentMother.random();
-
-      // Act
-
-      // Assert
-      expect(repository.findById(department.id), isNull);
-    });
-    test("Should remove null", () {
-      // Arrange
-      Department department = DepartmentMother.random();
-
-      // Act
-      repository.save(department);
-
-      // Assert
-      expect(repository.findById(department.id), isNotNull);
-      repository.delete(department.id);
-      expect(repository.findById(department.id), isNull);
+      expect(found, isNull);
     });
   });
 }

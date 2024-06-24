@@ -27,4 +27,10 @@ class TimeTableState{
         new Time(20, 0), null);
   }
 
+  static TimeTableState fake(){
+    return TimeTableState._(
+        TimeTableStateKind.LOADED, [], 5, Dates.today(), new Time(8, 0),
+        new Time(20, 0), AssigmentState.fake());
+  }
+
 }

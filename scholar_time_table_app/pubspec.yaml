@@ -28,3 +28,6 @@ flutter:
   uses-material-design: true
   assets:
     - lib/src/core/resource/data/Courses.json
+    - lib/src/core/resource/data/Teachers.json
+    - lib/src/core/resource/data/Departments.json
+    - lib/src/core/resource/data/Subjects.json

@@ -1,38 +1,31 @@
 import 'dart:convert';
 
+import '../../../shared/domain/FileRepository.dart';
 import '../domain/Teacher.dart';
 import '../domain/TeacherRepository.dart';
-import 'dart:io';
 
 class InMemoryTeacherRepository extends TeacherRepository{
-  Map<String, Teacher> _teachers = new Map();
+  Map<String, Teacher> _teachers         = new Map();
+  final String         _path             = 'Teachers';
+  final FileRepository _fileRepository;
 
+  InMemoryTeacherRepository._(this._teachers, this._fileRepository);
 
-  InMemoryTeacherRepository._(this._teachers);
-
-  static create(List<Teacher> teachers){
-    Map<String, Teacher> teachersMap = new Map();
-    for(var teacher in teachers){
-      teachersMap.putIfAbsent(teacher.id, () => teacher);
-    }
-    return InMemoryTeacherRepository._(teachersMap);
-  }
-  static empty(){
-    return InMemoryTeacherRepository._(new Map());
+  static create(FileRepository fileRepository){
+    return InMemoryTeacherRepository._(new Map(), fileRepository);
   }
 
-  static fromFile(File file){
-    Map<String, Teacher> teachers = new Map();
-    String content = file.readAsStringSync();
+  Future<List<Teacher>> _fromFile() async{
+    List<Teacher> teachers = [];
+    String content = await _fileRepository.readJson(_path);
     Map<String, dynamic> jsonData = jsonDecode(content);
     if(jsonData.containsKey("teachers")){
       List<dynamic> teachersData = jsonData["teachers"];
       for(var teacherDate in teachersData){
-        var teacher = Teacher.fromPrimitive(teacherDate);
-        teachers.putIfAbsent(teacher.id, () => teacher);
+        teachers.add(Teacher.fromPrimitive(teacherDate));
       }
     }
-    return InMemoryTeacherRepository._(teachers);
+    return teachers;
   }
 
   @override
@@ -46,12 +39,20 @@ class InMemoryTeacherRepository extends TeacherRepository{
   }
 
   @override
-  List<Teacher> searchAll() {
-    return List<Teacher>.from(_teachers.values);
+  Future<List<Teacher>> searchAll() async{
+    return await _fromFile();
   }
 
   @override
-  Teacher? findById(String id) {
-    return _teachers.containsKey(id) ? _teachers[id] : null;
+  Future<Teacher?> findById(String id) async{
+    var allTeachers = await searchAll();
+    if(allTeachers.isEmpty){
+      return null;
+    }
+    try{
+      return allTeachers.firstWhere((element) => element.id == id);
+    }catch(e){
+      return null;
+    }
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scholar_time_table_app/src/core/shared/domain/Dates.dart';
@@ -25,22 +27,30 @@ class TimeTableContent extends StatelessWidget{
   }
 
   Widget _renderCoursesContent(BuildContext context, TimeTableState state) {
-    final List<TimePlannerTask> tasks = [
-      TimePlannerTask(
-          minutesDuration: 60,
-          dateTime: new TimePlannerDateTime(day: 2, hour: 3, minutes: 0)),
-      TimePlannerTask(
-          minutesDuration: 30,
-          dateTime: new TimePlannerDateTime(day: 5, hour: 0, minutes: 10))
-    ];
+    var random = Random();
+    final List<TimePlannerTask> tasks = state.assignmentState!.tasks.map((e) =>
+        TimePlannerTask(
+            minutesDuration: e.duration.hour * 60,
+            dateTime: TimePlannerDateTime(
+                day: Dates.dayInWeek(e.day) - 1,
+                hour: e.start.hour,
+                minutes: 0,),
+        color: Colors.accents[random.nextInt(Colors.accents.length)],
+            onTap: () {// Permite ejecutar acción cuando hacemos click
+              print(e.description);
+            },
+            child: Text(
+              e.description,
+              style: TextStyle(color: Colors.black, fontSize: 12),
+            )))
+        .toList();
     return TimePlanner(
-      startHour: 0,
-      endHour: 23,
+      startHour: 8,
+      endHour: 20,
       headers: List.generate(
-        7,
-            (index) => TimePlannerTitle(
-          date: Dates.today(),
-          title: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][index],
+        5, (index) => TimePlannerTitle(
+        date: Dates.today(),
+        title: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'][index],
         ),
       ),
       tasks: tasks,

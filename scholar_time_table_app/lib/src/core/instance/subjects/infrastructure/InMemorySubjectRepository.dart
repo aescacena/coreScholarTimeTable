@@ -1,40 +1,19 @@
 import 'dart:convert';
-import 'dart:ffi';
-import 'dart:io';
 
+import '../../../shared/domain/FileRepository.dart';
 import '../domain/Subject.dart';
 import '../../../../../src/core/instance/subjects/domain/SubjectId.dart';
 import '../domain/SubjectRepository.dart';
 
 class InMemorySubjectRepository extends SubjectRepository{
   Map<String, Subject> _departments = new Map();
+  final String         _name        = "Subjects";
+  final FileRepository _fileRepository;
 
-  InMemorySubjectRepository._(this._departments);
+  InMemorySubjectRepository._(this._fileRepository);
 
-  static empty(){
-    return InMemorySubjectRepository._(new Map());
-  }
-
-  static create(List<Subject> subjects){
-    Map<String, Subject> sujectsMap = new Map();
-    for(var subject in subjects){
-      sujectsMap.putIfAbsent(subject.id.value, () => subject);
-    }
-    return InMemorySubjectRepository._(sujectsMap);
-  }
-
-  static fromFile(File file){
-    Map<String, Subject> subjects = new Map();
-    String content = file.readAsStringSync();
-    Map<String, dynamic> jsonData = jsonDecode(content);
-    if(jsonData.containsKey("subjects")){
-      List<dynamic> subjectsData = jsonData["subjects"];
-      for(var subjectData in subjectsData){
-        var subject = Subject.fromPrimitive(subjectData);
-        subjects.putIfAbsent(subject.id.value, () => subject);
-      }
-    }
-    return InMemorySubjectRepository._(subjects);
+  static create(FileRepository fileRepository){
+    return InMemorySubjectRepository._(fileRepository);
   }
 
   @override
@@ -48,12 +27,26 @@ class InMemorySubjectRepository extends SubjectRepository{
   }
 
   @override
-  List<Subject> searchAll() {
-    return List<Subject>.from(_departments.values);
+  Future<List<Subject>> searchAll() async{
+    var                  jsonSubjects = await _fileRepository.readJson(_name);
+    List<Subject>        subjects     = [];
+    Map<String, dynamic> jsonData     = jsonDecode(jsonSubjects);
+    if(jsonData.containsKey("subjects")){
+      List<dynamic> subjectsData = jsonData["subjects"];
+      for(var subjectData in subjectsData){
+        subjects.add(Subject.fromPrimitive(subjectData));
+      }
+    }
+    return subjects;
   }
 
   @override
-  Subject? findById(SubjectId id) {
-    return _departments.containsKey(id.value) ? _departments[id.value] : null;
+  Future<Subject?> findById(SubjectId id) async{
+    var allSubjects = await searchAll();
+    try{
+      return allSubjects.firstWhere((element) => element.id == id);
+    }catch(e){
+      return null;
+    }
   }
 }

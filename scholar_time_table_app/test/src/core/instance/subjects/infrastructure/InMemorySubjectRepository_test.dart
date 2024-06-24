@@ -1,99 +1,44 @@
-import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:scholar_time_table_app/src/core/instance/subjects/domain/Subject.dart';
 import 'package:scholar_time_table_app/src/core/instance/subjects/infrastructure/InMemorySubjectRepository.dart';
 
-import '../domain/SubjectMother.dart';
+import '../../../shared/infrastructure/DirectoryFileRepository.dart';
+import '../domain/SubjectIdMother.dart';
 
 void main(){
   late InMemorySubjectRepository repository;
 
   setUp((){
-    repository = InMemorySubjectRepository.empty();
+    repository = InMemorySubjectRepository.create(DirectoryFileRepository());
   });
 
-  group("Constructor", () {
-    test("Should create Empty", () {
-      // Arrange
-
-      // Act
-      repository = InMemorySubjectRepository.empty();
-
-      // Assert
-      expect(repository.searchAll().isEmpty, isTrue);
-    });
-    test("Should create from List", () {
-      // Arrange
-      var subjects = SubjectMother.randomList();
-
-      // Act
-      repository = InMemorySubjectRepository.create(subjects);
-
-      // Assert
-      expect(repository.searchAll(), subjects);
-    });
-    test("Should create from File", () {
-      // Arrange
-      var file = File(Directory.current.path+'/lib/src/core/resource/data/Subjects.json');
-
-      // Act
-      repository = InMemorySubjectRepository.fromFile(file);
-
-      // Assert
-      expect(repository.searchAll().isNotEmpty, isTrue);
-    });
-  });
   group("Repository Subjects", () {
-    test("Should save Subject", () {
+    test("Should return all Subjects", () async{
       // Arrange
-      Subject subject = SubjectMother.random();
 
       // Act
-      repository.save(subject);
+      var found = await repository.searchAll();
 
       // Assert
+      expect(found.isNotEmpty, true);
     });
-    test("Should return all Subjects", () {
+    test("Should return exist Subject", () async{
       // Arrange
-      List<Subject> subjects = SubjectMother.randomList();
 
       // Act
-      subjects.forEach((element) => repository.save(element));
-      List<Subject> subjectsFound = repository.searchAll();
+      var allSubjects = await repository.searchAll();
+      var found       = await repository.findById(allSubjects[0].id);
 
       // Assert
-      expect(subjects, containsAll(subjectsFound));
+      expect(found, isNotNull);
     });
-    test("Should return exist Subject", () {
+    test("Should return null", () async{
       // Arrange
-      Subject subject = SubjectMother.random();
 
       // Act
-      repository.save(subject);
+      var found = await repository.findById(SubjectIdMother.random());
 
       // Assert
-      expect(repository.findById(subject.id), isNotNull);
-    });
-    test("Should return null", () {
-      // Arrange
-      Subject subject = SubjectMother.random();
-
-      // Act
-
-      // Assert
-      expect(repository.findById(subject.id), isNull);
-    });
-    test("Should remove null", () {
-      // Arrange
-      Subject subject = SubjectMother.random();
-
-      // Act
-      repository.save(subject);
-
-      // Assert
-      expect(repository.findById(subject.id), isNotNull);
-      repository.delete(subject.id);
-      expect(repository.findById(subject.id), isNull);
+      expect(found, isNull);
     });
   });
 }

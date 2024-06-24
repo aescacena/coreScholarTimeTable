@@ -9,6 +9,6 @@ class TimeTableBloc extends Bloc<TimeTableState>{
   }
 
   Future<void> _init() async{
-    changeState(TimeTableState.initial());
+    changeState(TimeTableState.fake());
   }
 }
